@@ -1,70 +1,80 @@
 import Link from "next/link";
-import { business, footerServices } from "@/lib/content";
+import Icon from "./Icon";
+import Logo from "./Logo";
+import { business, navLinks } from "@/lib/content";
 
-// Le pied de page, identique sur toutes les pages (il est appelé dans layout.tsx).
+// Le pied de page sombre, identique sur toutes les pages (il est appelé dans layout.tsx).
 export default function Footer() {
   return (
-    <footer className="bg-bg2 pt-11 pb-[30px] text-[12px] leading-[1.6] text-muted">
+    <footer className="dark pt-14 pb-8 text-[14px]">
       <div className="wrap">
-        <p className="pb-5">
-          Expert auto glass repair and replacement in Columbus, Ohio. With 17 years of experience, we
-          ensure your vehicle is safe and road-ready.
-        </p>
-
-        {/* 2 colonnes sur téléphone, 4 colonnes (la 1re plus large) sur ordinateur */}
-        <div className="grid grid-cols-2 gap-[30px] border-y border-line py-6 md:grid-cols-[2fr_1fr_1fr_1fr]">
-          <div>
-            <b className="mb-2 block font-semibold text-text">{business.name}</b>
-            {business.city}
-            <br />
-            {business.note}
-            <br />
-            <a href={business.phoneHref} className="hover:text-ink">
-              {business.phone}
-            </a>
-            <br />
-            <a href={`mailto:${business.email}`} className="hover:text-ink">
-              {business.email}
-            </a>
+        {/* 1 colonne sur téléphone, 4 colonnes (la 1re plus large) sur ordinateur */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1.3fr_1.3fr]">
+          <div className="flex flex-col gap-4">
+            <Logo light />
+            <p className="max-w-[300px] text-[#9aa7b4]">
+              Expert auto glass repair and replacement in Columbus, Ohio. 17 years keeping your vehicle
+              safe and road-ready.
+            </p>
+            <Link href="/book" className="pill pill-sm pill-red self-start">
+              Book Service
+            </Link>
           </div>
 
           <div>
-            <b className="mb-2 block font-semibold text-text">Services</b>
-            <ul>
-              {footerServices.map((s) => (
-                <li key={s}>
-                  <Link href="/services" className="hover:text-ink">
-                    {s}
+            <FooterTitle>Quick Links</FooterTitle>
+            <ul className="flex flex-col gap-2">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="transition-colors hover:text-white">
+                    {l.label}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/book" className="transition-colors hover:text-white">
+                  Book Service
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <b className="mb-2 block font-semibold text-text">Hours</b>
-            <ul>
+            <FooterTitle>Customer Care</FooterTitle>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <a href={business.phoneHref} className="flex items-center gap-2.5 transition-colors hover:text-white">
+                  <Icon name="phone" className="h-4 w-4 text-glass" />
+                  {business.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${business.email}`} className="flex items-center gap-2.5 break-all transition-colors hover:text-white">
+                  <Icon name="mail" className="h-4 w-4 text-glass" />
+                  {business.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Icon name="pin" className="h-4 w-4 text-glass" />
+                {business.city} · {business.note}
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <FooterTitle>Hours</FooterTitle>
+            <ul className="flex flex-col gap-2">
               {business.hours.map((h) => (
-                <li key={h.days}>
-                  {h.days}: {h.time}
+                <li key={h.days} className="flex justify-between gap-4 border-b border-white/10 pb-2">
+                  <span>{h.days}</span>
+                  <span className={h.time === "Closed" ? "text-glass" : "text-white"}>{h.time}</span>
                 </li>
               ))}
             </ul>
           </div>
-
-          <div>
-            <b className="mb-2 block font-semibold text-text">Book</b>
-            <Link href="/book" className="hover:text-ink">
-              Schedule Service
-            </Link>
-            <br />
-            <a href={business.phoneHref} className="hover:text-ink">
-              Call Now
-            </a>
-          </div>
         </div>
 
-        <div className="flex flex-col gap-1.5 pt-[18px] md:flex-row md:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-[12px] text-[#7d8a97] md:flex-row md:justify-between">
           <span>© 2026 {business.name}. All rights reserved.</span>
           {/* Obligatoire : les images de voitures sont sous licence CC BY 4.0, on doit citer l'auteur */}
           <span>
@@ -73,7 +83,7 @@ export default function Footer() {
               href="https://creativecommons.org/licenses/by/4.0/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink"
+              className="hover:text-white"
             >
               “Car Concept” © 2024 Darmstadt Graphics Group, CC BY 4.0
             </a>
@@ -82,4 +92,8 @@ export default function Footer() {
       </div>
     </footer>
   );
+}
+
+function FooterTitle({ children }: { children: React.ReactNode }) {
+  return <b className="mb-4 block text-[13px] font-bold tracking-[0.08em] text-white uppercase">{children}</b>;
 }

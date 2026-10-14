@@ -45,7 +45,7 @@ export default function Confirmation({ data, photos, confirmationSent, onReset }
             <path d="M5 12.5l4.5 4.5L19 7.5" />
           </svg>
         </span>
-        <h1 ref={titleRef} tabIndex={-1} className="h1 text-[44px] outline-none md:text-[64px]">
+        <h1 ref={titleRef} tabIndex={-1} className="h1 text-[40px] outline-none md:text-[56px]">
           Request sent.
         </h1>
         <p className="lead max-w-[620px]">
@@ -112,7 +112,7 @@ export default function Confirmation({ data, photos, confirmationSent, onReset }
                 ))}
               </div>
             )}
-            <span className="pill pill-blue h-10 self-start text-[14px]" aria-hidden="true">
+            <span className="pill pill-red h-10 self-start text-[14px]" aria-hidden="true">
               Call customer
             </span>
           </div>

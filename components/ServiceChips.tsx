@@ -29,7 +29,7 @@ export default function ServiceChips({ chips }: { chips: Chip[] }) {
   return (
     <nav
       aria-label="Services"
-      className="sticky top-16 z-40 border-b border-line bg-white/[0.86] backdrop-blur-xl"
+      className="sticky top-[72px] z-40 border-b border-line bg-white/[0.86] backdrop-blur-xl"
     >
       <div className="wrap flex h-14 items-center gap-2 overflow-x-auto text-[14px] [scrollbar-width:none]">
         {chips.map((c) => (
@@ -44,7 +44,7 @@ export default function ServiceChips({ chips }: { chips: Chip[] }) {
           </a>
         ))}
         <span className="flex-1" />
-        <Link href="/book" className="pill pill-sm pill-blue shrink-0">
+        <Link href="/book" className="pill pill-sm pill-red shrink-0">
           Book Service
         </Link>
       </div>

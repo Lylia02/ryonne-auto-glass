@@ -22,10 +22,10 @@ export default function BookCTA({ eyebrow, title, text, image = false }: Props) 
     >
       <Reveal className="wrap flex flex-col items-center gap-5">
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-        <h2 className="h2 text-[40px] md:text-[64px]">{title}</h2>
+        <h2 className="h2 text-[32px] md:text-[48px]">{title}</h2>
         <p className="lead max-w-[620px]">{text}</p>
         <div className="mt-1.5 flex flex-wrap items-center justify-center gap-6">
-          <Link href="/book" className="pill pill-blue">
+          <Link href="/book" className="pill pill-red">
             Book Appointment
           </Link>
           <a href={business.phoneHref} className="more">

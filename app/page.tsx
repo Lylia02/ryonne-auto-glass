@@ -7,9 +7,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import BookCTA from "@/components/BookCTA";
-import { business, chipRepair, reviews, services, specs, stats, steps } from "@/lib/content";
-import { images } from "@/lib/images";
+import Icon from "@/components/Icon";
+import QuickQuote from "@/components/QuickQuote";
+import CheckIcon from "@/components/CheckIcon";
+import { brands, business, chipRepair, features, reviews, services, steps } from "@/lib/content";
+import { images, type ImageKey } from "@/lib/images";
 
 // petit raccourci pour retrouver un service par son id
 const service = (id: string) => services.find((s) => s.id === id)!;
@@ -18,224 +20,236 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Stats />
-      <ServicesBento />
-      <FactorySpec />
+      <ServiceCards />
+      <Features />
+      <Promos />
       <Process />
       <Reviews />
-      <BookCTA
-        eyebrow="Mon–Fri 8am – 6pm · Sat 9am – 3pm"
-        title="Book your glass repair today."
-        text="Submit your vehicle details to start your service request. No upfront credit card required."
-        image
-      />
+      <Brands />
     </>
   );
 }
 
 /* ---------------------------------------------------------------
-   1. HERO : le grand titre + la voiture
+   Titre de section centré, avec un petit trait rouge de chaque côté
+   --------------------------------------------------------------- */
+function SectionTitle({ title, text }: { title: string; text?: string }) {
+  return (
+    <Reveal className="flex flex-col items-center gap-3 text-center">
+      <div className="flex items-center gap-4">
+        <span className="h-[2px] w-8 bg-accent md:w-12" />
+        <h2 className="h2">{title}</h2>
+        <span className="h-[2px] w-8 bg-accent md:w-12" />
+      </div>
+      {text && <p className="lead max-w-[620px]">{text}</p>}
+    </Reveal>
+  );
+}
+
+/* ---------------------------------------------------------------
+   1. HERO : la grande photo, le titre, et le devis rapide
    --------------------------------------------------------------- */
 function Hero() {
   return (
-    <section className="overflow-hidden bg-[linear-gradient(180deg,#fff_0%,#fff_45%,var(--color-bg3)_100%)] pt-16 md:pt-24">
-      <div className="wrap flex flex-col items-center gap-[22px] text-center">
-        <Reveal>
-          <span className="eyebrow">Ryonne Auto Glass · {business.city}</span>
-        </Reveal>
-        <Reveal delay={80}>
-          <h1 className="h1">
-            Precision auto glass.
-            <br />
-            <span className="text-grey">Repair &amp; replacement.</span>
-          </h1>
-        </Reveal>
-        <Reveal delay={160}>
-          <p className="lead max-w-[640px]">
-            Expert windshield replacement and repair in Columbus. With 17 years of experience, we
-            ensure your vehicle is safe and road-ready.
-          </p>
-        </Reveal>
-        <Reveal delay={240} className="mt-1.5 flex flex-wrap items-center justify-center gap-6">
-          <Link href="/book" className="pill pill-blue">
-            Book Appointment
-          </Link>
-          <a href={business.phoneHref} className="more">
-            Call {business.phone}
-          </a>
-        </Reveal>
+    <section className="relative overflow-hidden bg-bg2">
+      {/* Ordinateur : la photo prend tout le fond (fill = remplit le parent) */}
+      <div className="absolute inset-0 hidden md:block">
+        <Image
+          src={images.hero.src}
+          alt="Car on the road with a clear windshield"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right"
+        />
+        {/* un dégradé blanc à gauche pour que le texte reste lisible */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#fff_0%,#fff_28%,rgba(255,255,255,.88)_42%,rgba(255,255,255,0)_66%)]" />
       </div>
 
-      {/* priority = on charge cette image en premier (elle est visible tout de suite) */}
-      <Reveal delay={200}>
-        <Image
-          {...images.carMidnight}
-          alt="Midnight blue car, studio shot"
-          priority
-          sizes="(max-width: 820px) 130vw, 1180px"
-          className="relative left-[-15%] mx-auto mt-[30px] w-[130%] max-w-none md:left-[2%] md:w-[min(1180px,108%)]"
-        />
+      <div className="wrap relative z-10 pt-12 md:pt-24">
+        <div className="flex max-w-[560px] flex-col gap-5">
+          <Reveal>
+            <span className="eyebrow">Expert auto glass · {business.city}</span>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="h1">
+              Clear view.
+              <br />
+              <span className="text-accent">Safe drive.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={160}>
+            <p className="lead max-w-[440px]">
+              Windshield replacement, rock chip repair and ADAS recalibration in Columbus. 17 years of
+              experience, mobile or in-shop.
+            </p>
+          </Reveal>
+          <Reveal delay={240} className="flex flex-wrap gap-3">
+            <Link href="/book" className="pill pill-red">
+              Book Appointment
+            </Link>
+            <a href={business.phoneHref} className="pill pill-line">
+              Call {business.phone}
+            </a>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Téléphone : la photo passe sous le texte */}
+      <div className="relative mt-8 aspect-[16/10] md:hidden">
+        <Image src={images.hero.src} alt="" fill sizes="100vw" className="object-cover object-right" />
+      </div>
+
+      <Reveal delay={300} className="wrap relative z-10 -mt-10 pb-12 md:mt-16 md:pb-14">
+        <QuickQuote />
       </Reveal>
     </section>
   );
 }
 
 /* ---------------------------------------------------------------
-   2. CHIFFRES CLÉS (4 colonnes)
+   2. LES SERVICES EN CARTES (comme les voitures de la maquette)
    --------------------------------------------------------------- */
-function Stats() {
-  return (
-    <div className="wrap">
-      <div className="grid grid-cols-2 border-t border-line md:grid-cols-4">
-        {stats.map((s, i) => (
-          <Reveal
-            key={s.value}
-            delay={i * 80}
-            className="border-b border-line px-1 py-[22px] md:border-r md:border-b-0 md:px-7 md:pt-[30px] md:pb-[34px] md:last:border-r-0"
-          >
-            <b className="block text-[30px] font-semibold tracking-[-0.04em] text-ink md:text-[40px]">
-              {s.value}
-            </b>
-            <span className="text-[14px] text-muted">{s.label}</span>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------
-   3. SERVICES EN "BENTO" (grille de cartes de tailles différentes)
-   --------------------------------------------------------------- */
-
-// Une carte de la grille. `night` = carte sombre. `wide` = prend 2 colonnes.
-function BentoCard({
-  code,
-  title,
-  text,
-  night = false,
-  wide = false,
-  className = "",
-  children,
-}: {
-  code: string;
-  title: string;
-  text: string;
-  night?: boolean;
-  wide?: boolean;
-  className?: string;
-  children: React.ReactNode; // l'image
-}) {
-  return (
-    <Link
-      href="/services"
-      className={`group relative flex flex-col overflow-hidden rounded-[28px] px-[34px] pt-[34px] transition-transform duration-500 hover:scale-[1.01] ${
-        night ? "bg-[linear-gradient(160deg,var(--color-night2),var(--color-night))]" : "bg-bg2"
-      } ${wide ? "md:col-span-2" : ""} ${className}`}
-    >
-      <div className={`relative z-[1] flex flex-col gap-2 ${wide ? "md:max-w-[330px]" : ""}`}>
-        <span className={`text-[13px] font-semibold ${night ? "text-[#5d7183]" : "text-soft"}`}>{code}</span>
-        <h3 className={`h3 ${night ? "text-white" : ""}`}>{title}</h3>
-        <p className={`max-w-[420px] text-[16px] ${night ? "text-[#93a3b2]" : "text-muted"}`}>{text}</p>
-        {wide && <span className="more mt-1.5">Learn more</span>}
-      </div>
-      {children}
-    </Link>
-  );
-}
-
-function ServicesBento() {
-  const windshield = service("windshield");
-  const adas = service("adas");
-  const side = service("side");
-  const fleet = service("fleet");
-  // classes communes des images : posées en bas de la carte, avec un léger zoom au survol
-  const img = "absolute max-w-none transition-transform duration-700 group-hover:scale-[1.03]";
+function ServiceCards() {
+  const cards: { href: string; code: string; name: string; text: string; badges: readonly string[]; image: ImageKey }[] = [
+    { ...pick("windshield"), image: "serviceWindshield" },
+    {
+      href: "/book",
+      code: chipRepair.code,
+      name: chipRepair.name,
+      text: chipRepair.summary,
+      badges: chipRepair.badges,
+      image: "serviceChip",
+    },
+    { ...pick("adas"), image: "serviceAdas" },
+    { ...pick("side"), image: "serviceSide" },
+  ];
 
   return (
-    <section id="services" className="py-20 md:py-[130px]">
+    <section id="services" className="py-20 md:py-24">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">Services</span>
-          <h2 className="h2 mt-2.5 max-w-[760px]">
-            Our auto glass services. <span className="text-grey">Certified and OE-grade.</span>
-          </h2>
-        </Reveal>
+        <SectionTitle title="Our services" text="Certified, OE-grade glass work for every make and model." />
 
-        <Reveal delay={100} className="mt-14 grid auto-rows-[440px] grid-cols-1 gap-5 md:grid-cols-3">
-          <BentoCard code={windshield.code} title={windshield.name} text={windshield.summary} wide>
-            <Image
-              {...images.carFrontWhite}
-              alt=""
-              sizes="360px"
-              className={`${img} bottom-[-30px] left-1/2 w-[60%] -translate-x-1/2 md:right-9 md:bottom-[-24px] md:left-auto md:w-[360px] md:translate-x-0`}
-            />
-          </BentoCard>
-
-          <BentoCard code={chipRepair.code} title={chipRepair.name} text={chipRepair.summary}>
-            <Image
-              {...images.detailGlass}
-              alt=""
-              sizes="300px"
-              className={`${img} bottom-[-70px] left-1/2 w-[300px] -translate-x-1/2`}
-            />
-          </BentoCard>
-
-          <BentoCard code={adas.code} title={adas.name} text={adas.summary} night>
-            <Image {...images.carHeroSilver} alt="" sizes="480px" className={`${img} bottom-5 left-[6%] w-[120%]`} />
-          </BentoCard>
-
-          <BentoCard code={side.code} title={side.name} text={side.summary}>
-            <Image {...images.carSideGraphite} alt="" sizes="480px" className={`${img} bottom-10 left-[6%] w-[118%]`} />
-          </BentoCard>
-
-          <BentoCard code={fleet.code} title={fleet.name} text={fleet.summary} className="!bg-bg3">
-            <Image {...images.carWhite} alt="" sizes="480px" className={`${img} bottom-[30px] left-[4%] w-[122%]`} />
-          </BentoCard>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------------------------------------------
-   4. SECTION SOMBRE : "Built to factory spec."
-   --------------------------------------------------------------- */
-function FactorySpec() {
-  return (
-    <section className="dark overflow-hidden pt-20 md:pt-[130px]">
-      <div className="wrap">
-        <Reveal className="flex flex-wrap items-end justify-between gap-10">
-          <div className="max-w-[640px]">
-            <span className="eyebrow">Precision in every install</span>
-            <h2 className="h2 mt-2.5">
-              Built to factory spec. <span className="serif text-glass">Every time.</span>
-            </h2>
-          </div>
-          <p className="lead max-w-[420px]">
-            Certified technicians adhering strictly to Auto Glass Safety Council (AGSC) specifications
-            and OEM urethane cure times.
-          </p>
-        </Reveal>
-
-        <div className="mt-5 grid grid-cols-1 border-t border-[#1f2d3b] md:grid-cols-3">
-          {specs.map((s, i) => (
-            <Reveal key={s.title} delay={i * 100} className="pt-[30px] md:pr-[30px]">
-              <b className="mb-2 block text-[21px] font-semibold tracking-[-0.02em] text-white">{s.title}</b>
-              <span className="text-[#93a3b2]">{s.text}</span>
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((c, i) => (
+            <Reveal key={c.code} delay={i * 80}>
+              <Link
+                href={c.href}
+                className="group flex h-full flex-col overflow-hidden rounded-md border border-line bg-white transition-shadow duration-300 hover:shadow-[0_20px_40px_-24px_rgba(14,22,32,.35)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-bg2">
+                  <Image
+                    src={images[c.image].src}
+                    alt={c.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                    className="object-contain transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <span className="absolute top-3 left-3 rounded-sm bg-ink px-2 py-1 text-[11px] font-bold tracking-[0.05em] text-white">
+                    {c.code}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <h3 className="text-[17px] font-bold text-ink">{c.name}</h3>
+                  <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-muted">
+                    {c.badges.map((b) => (
+                      <li key={b} className="flex items-center gap-1.5">
+                        <CheckIcon className="mt-0 h-3.5 w-3.5 text-accent" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[14px] text-muted">{c.text}</p>
+                  <span className="more mt-auto pt-1">Learn more</span>
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>
       </div>
+    </section>
+  );
+}
 
-      <Reveal delay={150}>
+// Les infos d'une carte à partir d'un service de content.ts
+function pick(id: string) {
+  const s = service(id);
+  return { href: `/services#${s.id}`, code: s.code, name: s.name, text: s.summary, badges: s.badges };
+}
+
+/* ---------------------------------------------------------------
+   3. LES 4 ARGUMENTS AVEC ICÔNES
+   --------------------------------------------------------------- */
+function Features() {
+  return (
+    <section className="border-y border-line bg-bg2">
+      <div className="wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((f, i) => (
+          <Reveal
+            key={f.title}
+            delay={i * 80}
+            className="flex flex-col items-center gap-3 border-line px-6 py-10 text-center sm:border-r sm:even:border-r-0 lg:even:border-r lg:last:border-r-0"
+          >
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent">
+              <Icon name={f.icon} className="h-6 w-6" />
+            </span>
+            <b className="text-[14px] font-bold tracking-[0.05em] text-ink uppercase">{f.title}</b>
+            <p className="max-w-[240px] text-[14px] text-muted">{f.text}</p>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------
+   4. LES 2 ENCARTS CÔTE À CÔTE : service mobile (sombre) + flottes (clair)
+   --------------------------------------------------------------- */
+function Promos() {
+  const fleet = service("fleet");
+  return (
+    <section className="grid grid-cols-1 lg:grid-cols-2">
+      {/* ----- Service mobile ----- */}
+      <div className="dark grid grid-cols-1 sm:grid-cols-[1.1fr_1fr]">
+        <Reveal className="flex flex-col justify-center gap-4 p-8 md:p-12">
+          <span className="eyebrow">Mobile service</span>
+          <h2 className="h2 text-[28px] md:text-[34px]">We come to you.</h2>
+          <p className="text-[15px] text-[#9aa7b4]">
+            Home, office or parking lot: our technicians bring the shop to your driveway anywhere in
+            Columbus.
+          </p>
+          <Link href="/book" className="pill pill-red self-start">
+            Book mobile service
+          </Link>
+        </Reveal>
+        <div className="relative min-h-[240px]">
+          <Image
+            src={images.promoMobile.src}
+            alt="Technician on a mobile auto glass call"
+            fill
+            sizes="(max-width: 1024px) 100vw, 30vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      {/* ----- Flottes d'entreprise ----- */}
+      <div className="relative overflow-hidden bg-white">
+        <Reveal className="relative z-10 flex max-w-[360px] flex-col gap-4 p-8 md:p-12">
+          <span className="eyebrow">Commercial fleets</span>
+          <h2 className="h2 text-[28px] md:text-[34px]">Keep your fleet on the road.</h2>
+          <p className="text-[15px] text-muted">{fleet.summary}</p>
+          <Link href="/services#fleet" className="pill pill-line self-start">
+            Fleet services
+          </Link>
+        </Reveal>
         <Image
-          {...images.carHeroSilver}
-          alt="Silver car"
-          sizes="(max-width: 820px) 100vw, 1060px"
-          className="relative left-[2%] mx-auto mt-[30px] mb-[-30px] w-[min(1060px,100%)]"
+          {...images.promoFleet}
+          alt="Commercial van"
+          sizes="(max-width: 1024px) 70vw, 380px"
+          className="pointer-events-none relative -mt-6 ml-auto w-[80%] sm:absolute sm:right-[-6%] sm:bottom-6 sm:mt-0 sm:w-[52%]"
         />
-      </Reveal>
+      </div>
     </section>
   );
 }
@@ -245,26 +259,16 @@ function FactorySpec() {
    --------------------------------------------------------------- */
 function Process() {
   return (
-    <section className="py-20 md:py-[130px]">
+    <section className="py-20 md:py-24">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">Our repair process</span>
-          <h2 className="h2 mt-2.5 max-w-[760px]">
-            From intake to drive-away. <span className="text-grey">Four careful steps.</span>
-          </h2>
-        </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <SectionTitle title="How it works" text="From intake to drive-away, four careful steps." />
+        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <Reveal
-              key={s.n}
-              delay={i * 90}
-              className="flex flex-col gap-3 rounded-3xl bg-bg2 p-7 lg:min-h-[270px]"
-            >
-              <span className="text-[13px] font-semibold text-accent">
-                {s.n} · {s.tag}
-              </span>
-              <h3 className="h3 text-[22px]">{s.title}</h3>
-              <p className="text-[15px] text-muted">{s.short}</p>
+            <Reveal key={s.n} delay={i * 90} className="flex flex-col gap-2 border-t-2 border-accent pt-5">
+              <span className="font-brand text-[40px] leading-none font-extrabold text-accent">{s.n}</span>
+              <span className="eyebrow mt-2 text-muted">{s.tag}</span>
+              <h3 className="h3 text-[18px]">{s.title}</h3>
+              <p className="text-[14px] text-muted">{s.short}</p>
             </Reveal>
           ))}
         </div>
@@ -278,33 +282,50 @@ function Process() {
    --------------------------------------------------------------- */
 function Reviews() {
   return (
-    <section id="reviews" className="bg-bg2 py-20 md:py-[130px]">
+    <section id="reviews" className="bg-bg2 py-20 md:py-24">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">Columbus glass reviews</span>
-          <h2 className="h2 mt-2.5">4.98 from 800+ jobs.</h2>
-        </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <SectionTitle title="What drivers say" text="Rated 4.98 from 800+ glass jobs in Columbus." />
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
           {reviews.map((r, i) => (
             <Reveal
               as="figure"
               key={r.name}
               delay={i * 100}
-              className="flex flex-col gap-[22px] rounded-3xl border border-line bg-white p-8"
+              className="flex flex-col gap-5 rounded-md border border-line bg-white p-7"
             >
-              <span className="text-[14px] tracking-[3px] text-amber" aria-label="5 out of 5 stars">
+              <span className="text-[15px] tracking-[3px] text-amber" aria-label="5 out of 5 stars">
                 ★★★★★
               </span>
-              <blockquote className="text-[19px] leading-normal tracking-[-0.01em] text-ink">
-                “{r.quote}”
-              </blockquote>
-              <figcaption className="mt-auto text-[14px] text-muted">
-                <b className="block text-[15px] text-ink">{r.name}</b>
+              <blockquote className="text-[16px] leading-relaxed text-ink">“{r.quote}”</blockquote>
+              <figcaption className="mt-auto border-t border-line pt-4 text-[13px] text-muted">
+                <b className="block text-[14px] font-bold text-ink uppercase">{r.name}</b>
                 {r.detail}
               </figcaption>
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------------------------------------
+   7. LES MARQUES (simples noms en gris)
+   --------------------------------------------------------------- */
+function Brands() {
+  return (
+    <section className="py-14">
+      <div className="wrap flex flex-col items-center gap-7">
+        <span className="text-[12px] font-bold tracking-[0.18em] text-ink uppercase">
+          We service all makes &amp; models
+        </span>
+        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 md:gap-x-14">
+          {brands.map((b) => (
+            <li key={b} className="font-brand text-[17px] font-extrabold tracking-[0.1em] text-soft uppercase">
+              {b}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

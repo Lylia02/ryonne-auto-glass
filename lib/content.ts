@@ -107,8 +107,20 @@ export const chipRepair = {
   code: "GLS-02",
   name: "Rock Chip Repair",
   summary: "Precision resin injection to stop crack propagation and restore clarity.",
+  badges: ["Same-Day Service", "Mobile or In-Shop"],
   image: "detailGlass" as ImageKey,
 };
+
+// Les 4 arguments avec icône (page d'accueil). `icon` = un nom de components/Icon.tsx
+export const features = [
+  { icon: "shield", title: "OE-Grade Glass", text: "Factory-standard glass and structural urethane for a safe, precise fit." },
+  { icon: "award", title: "17 Years Experience", text: "Certified technicians who work on all makes and models." },
+  { icon: "van", title: "Mobile Service", text: "We come to your home or workplace anywhere in Columbus." },
+  { icon: "clock", title: "Same-Day Service", text: "Most repairs and replacements done the same day." },
+] as const;
+
+// La bande "We service all makes & models" (simples noms écrits, pas de logos officiels)
+export const brands = ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Jeep", "Hyundai", "Kia"];
 
 export const specs = [
   { title: "OE-grade glass", text: "Precision-fit windshields for factory-standard safety and optical clarity." },

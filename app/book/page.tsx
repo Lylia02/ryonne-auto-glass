@@ -5,7 +5,9 @@
 // =============================================================
 
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import BookingForm from "@/components/booking/BookingForm";
+import BookingFormFromUrl from "@/components/booking/BookingFormFromUrl";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -17,7 +19,11 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <>
-      <BookingForm />
+      {/* Le temps de lire l'adresse (?year=...), on affiche le formulaire vide,
+          puis il est remplacé par la version préremplie. */}
+      <Suspense fallback={<BookingForm />}>
+        <BookingFormFromUrl />
+      </Suspense>
 
       {/* ----- Les conseils en bas de page ----- */}
       <section className="bg-bg2 py-20 md:py-[110px]">

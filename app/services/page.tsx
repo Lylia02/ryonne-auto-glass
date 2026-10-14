@@ -78,7 +78,7 @@ export default function ServicesPage() {
               }`}
             >
               <Reveal
-                className={`relative flex h-80 items-center justify-center overflow-hidden rounded-[32px] md:h-[520px] ${m.bg} ${
+                className={`relative flex h-80 items-center justify-center overflow-hidden rounded-lg md:h-[520px] ${m.bg} ${
                   flip ? "md:order-2" : ""
                 }`}
               >

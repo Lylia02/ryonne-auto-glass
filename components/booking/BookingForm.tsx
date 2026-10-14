@@ -34,9 +34,19 @@ const initial = {
 };
 type Summary = typeof initial;
 
-export default function BookingForm() {
+// Les valeurs déjà choisies dans le "devis rapide" de l'accueil (voir BookingFormFromUrl.tsx)
+export type Prefill = { year?: string; make?: string; model?: string; service?: string; glass?: string };
+
+export default function BookingForm({ prefill = {} }: { prefill?: Prefill }) {
   // Les champs qui s'affichent dans le résumé à droite (les autres sont lus à l'envoi)
-  const [form, setForm] = useState<Summary>(initial);
+  const [form, setForm] = useState<Summary>(() => ({
+    ...initial,
+    year: prefill.year ?? "",
+    make: prefill.make ?? "",
+    model: prefill.model ?? "",
+    service: prefill.service ?? "",
+  }));
+  const [glassDefault, setGlassDefault] = useState(prefill.glass ?? ""); // le select "glass" n'est pas suivi par useState
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending">("idle");
@@ -115,6 +125,7 @@ export default function BookingForm() {
     photos.forEach((p) => URL.revokeObjectURL(p.url));
     setPhotos([]);
     setForm(initial);
+    setGlassDefault("");
     setErrors({});
     setSent(null);
     setFormKey((k) => k + 1);
@@ -135,7 +146,7 @@ export default function BookingForm() {
       <section className="pt-16 pb-[30px] md:pt-20">
         <div className="wrap flex flex-col gap-4">
           <span className="eyebrow">Book Service</span>
-          <h1 className="h1 max-w-[820px] text-[40px] md:text-[72px]">Book your vehicle glass service.</h1>
+          <h1 className="h1 max-w-[820px] text-[36px] md:text-[56px]">Book your vehicle glass service.</h1>
           <p className="lead max-w-[680px]">
             Submit your vehicle specifications, select your damaged glass, and choose your preferred
             appointment date in Columbus, Ohio.
@@ -178,7 +189,7 @@ export default function BookingForm() {
               </Group>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Field label="Damaged Glass Location *" error={errors.glass}>
-                  <select name="glass" defaultValue="" className="input" {...err("glass")}>
+                  <select name="glass" defaultValue={glassDefault} className="input" {...err("glass")}>
                     <option value="" disabled>
                       Select glass…
                     </option>
@@ -282,7 +293,7 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="pill pill-blue h-14 text-[16px] disabled:cursor-wait disabled:opacity-60"
+              className="pill pill-red h-14 text-[16px] disabled:cursor-wait disabled:opacity-60"
             >
               {status === "sending" ? "Sending…" : "Schedule Appointment"}
             </button>

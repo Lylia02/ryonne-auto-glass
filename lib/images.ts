@@ -16,6 +16,17 @@ export const images = {
   carSideGraphite: { src: "/images/car-side-graphite.webp", width: 1408, height: 448 },
   carWhite: { src: "/images/car-white.webp", width: 1600, height: 595 },
   detailGlass: { src: "/images/detail-glass.webp", width: 1365, height: 1200 },
+
+  // ---- LES PHOTOS DE LA PAGE D'ACCUEIL (générées avec Gemini) ----
+  // Pour changer une photo : mets-la dans public/images/
+  // puis remplace le src + la taille (width/height) sur la bonne ligne.
+  hero: { src: "/images/hero.jpg", width: 2912, height: 1440 },
+  serviceWindshield: { src: "/images/service-windshield.jpg", width: 2400, height: 1792 },
+  serviceChip: { src: "/images/service-chip.jpg", width: 2400, height: 1792 },
+  serviceAdas: { src: "/images/service-adas.jpg", width: 2400, height: 1792 },
+  serviceSide: { src: "/images/car-side-graphite.webp", width: 1408, height: 448 }, // ⚠️ à remplacer -> service-side.jpg (format 4:3)
+  promoMobile: { src: "/images/promo-mobile.jpg", width: 2400, height: 1792 },
+  promoFleet: { src: "/images/promo-fleet.jpg", width: 2624, height: 1632 },
 };
 
 export type ImageKey = keyof typeof images;
