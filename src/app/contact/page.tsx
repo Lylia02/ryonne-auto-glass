@@ -1,6 +1,7 @@
 import PageHero from '@/components/PageHero';
 import ContactCards from '@/components/ContactCards';
 import SpecForm from '@/components/SpecForm';
+import Diagnose from '@/components/Diagnose';
 import Bay from '@/components/Bay';
 import { pageMetadata } from '@/lib/seo';
 import { contactPage, fleetPrograms, quoteForm } from '@/lib/site';
@@ -18,8 +19,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
 
   return (
     <>
-      <PageHero {...contactPage.hero} style={{ minHeight: '70vh' }} imgStyle={{ objectPosition: '50% 30%' }} />
+      <PageHero {...contactPage.hero} style={{ minHeight: '82vh' }} imgStyle={{ objectPosition: '50% 30%' }} crack />
       <ContactCards />
+      <Diagnose />
       <SpecForm key={`${service}-${program}`} defaultService={service} defaultMessage={message} />
       <Bay />
     </>

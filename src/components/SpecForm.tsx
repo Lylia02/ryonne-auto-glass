@@ -6,6 +6,7 @@ import Rich from './Rich';
 import { qa, revealUp, useGsap } from '@/lib/motion';
 import { business, quoteForm as f } from '@/lib/site';
 import { submitQuote, type QuoteState } from '@/app/actions';
+import { PREFILL_EVENT, type Prefill } from '@/lib/keys';
 
 type Props = { defaultService?: string; defaultMessage?: string };
 
@@ -28,6 +29,21 @@ export default function SpecForm({ defaultService = 'mobile', defaultMessage = '
   useEffect(() => {
     if (state.status === 'success') { formRef.current?.reset(); setFileName(null); }
   }, [state]);
+
+  // Pre-fill from the 3D diagnosis ("Book this repair" in <Diagnose>)
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const { glass, message } = (e as CustomEvent<Prefill>).detail;
+      const form = formRef.current; if (!form) return;
+      const sel = form.elements.namedItem('glass') as HTMLSelectElement | null;
+      const msg = form.elements.namedItem('message') as HTMLTextAreaElement | null;
+      if (sel) sel.value = glass;
+      if (msg) msg.value = message;
+      form.classList.remove('is-prefilled'); void form.offsetWidth; form.classList.add('is-prefilled');
+    };
+    window.addEventListener(PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
+  }, []);
 
   // Focus the first invalid field
   useEffect(() => {

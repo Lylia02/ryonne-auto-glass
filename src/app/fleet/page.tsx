@@ -1,4 +1,4 @@
-import PageHero from '@/components/PageHero';
+import FleetHero from '@/components/FleetHero';
 import StatsBand from '@/components/StatsBand';
 import Manifesto from '@/components/Manifesto';
 import Tiers from '@/components/Tiers';
@@ -12,7 +12,7 @@ export const metadata = pageMetadata('fleet', '/fleet', IMG.fleet);
 export default function FleetPage() {
   return (
     <>
-      <PageHero {...fleetPage.hero} />
+      <FleetHero />
       <StatsBand />
       <Manifesto {...fleetPage.manifesto} />
       <Tiers />

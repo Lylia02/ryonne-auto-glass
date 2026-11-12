@@ -227,6 +227,87 @@ export const services = [
   },
 ];
 
+/* ---------- Glass Choir — home services showcase ----------
+   Each service is shown like a gemstone: one "cut" (an 8-point
+   polygon, x y in %) and one light tone. The cut morphs from one
+   service to the next, so every polygon keeps 8 points in the same
+   order (start top-left, clockwise). */
+export const choir = {
+  eyebrow: 'What we do',
+  title: 'Five services,\n*one standard*',
+  hint: 'Scroll to explore',
+  all: 'All services »',
+  cuts: [
+    '18% 14%, 50% 9%, 82% 14%, 95% 50%, 99% 88%, 50% 93%, 1% 88%, 5% 50%',   // windshield
+    '30% 3%, 70% 3%, 97% 30%, 97% 70%, 70% 97%, 30% 97%, 3% 70%, 3% 30%',     // chip — round brilliant
+    '24% 6%, 50% 6%, 76% 6%, 99% 50%, 76% 94%, 50% 94%, 24% 94%, 1% 50%',     // ADAS — hexagon
+    '30% 7%, 76% 7%, 97% 38%, 97% 93%, 50% 93%, 3% 93%, 4% 58%, 12% 28%',     // side glass
+    '14% 3%, 86% 3%, 97% 14%, 97% 86%, 86% 97%, 14% 97%, 3% 86%, 3% 14%',     // mobile — emerald cut
+  ],
+  tones: ['#8fb4ff', '#ffd400', '#36e2ff', '#e8102a', '#ff8a3d'],
+};
+
+/* ---------- Diagnose in 3D — configurator before the quote form ----------
+   `nodes` are mesh names inside /models/car.glb. `form` is the value
+   it pre-selects in the quote form's "Damaged glass" field. */
+export type GlassId = 'windshield' | 'driver' | 'passenger' | 'quarter' | 'rear';
+export type DamageId = 'chip' | 'crack' | 'shattered';
+export const diagnose = {
+  eyebrow: 'Diagnose in 3D',
+  title: 'Show us\n*the damage*',
+  text: 'Turn the car, tap the glass that took the hit and tell us what happened. We match the right repair and pre-fill your quote.',
+  model: '/models/car.glb',
+  steps: { glass: 'Which glass?', damage: 'What happened?', paint: 'Your colour' },
+  glass: [
+    { id: 'windshield', label: 'Windshield', node: 'BodyWindshield', form: 'Windshield' },
+    { id: 'driver', label: 'Driver window', node: 'BodyDoorLWindow', form: 'Side window' },
+    { id: 'passenger', label: 'Passenger window', node: 'BodyDoorRWindow', form: 'Side window' },
+    { id: 'quarter', label: 'Rear side glass', node: 'BodyWindowsRearSides', form: 'Side window' },
+    { id: 'rear', label: 'Rear glass', node: 'BodyRearwindow', form: 'Rear glass' },
+  ] as { id: GlassId; label: string; node: string; form: string }[],
+  damage: [
+    { id: 'chip', label: 'Chip', hint: 'Smaller than a quarter' },
+    { id: 'crack', label: 'Crack', hint: 'A line that spreads' },
+    { id: 'shattered', label: 'Shattered', hint: 'Broken or missing' },
+  ] as { id: DamageId; label: string; hint: string }[],
+  paints: [
+    { variant: 'Torched Graphite', label: 'Graphite', swatch: '#3b3e44' },
+    { variant: 'Pearly Swirly', label: 'Pearl', swatch: '#ebe8e2' },
+    { variant: 'Carmine Candy', label: 'Carmine', swatch: '#8a0f1d' },
+  ],
+  idle: 'Tap a glass on the car, or pick one here.',
+  pickDamage: 'Now tell us what happened.',
+  loading: 'Preparing the car',
+  cta: 'Book this repair',
+  reset: 'Start over',
+  rotate: 'Drag to turn',
+};
+
+/** Which repair a glass + damage combination needs (prices = price list above). */
+export function diagnoseResult(glass: GlassId, damage: DamageId) {
+  if (glass === 'windshield') {
+    if (damage === 'chip') return {
+      service: 'Rock chip repair', price: 'from $79', time: '30 min',
+      note: 'Usually $0 with comprehensive insurance. A repair keeps your factory seal intact.',
+    };
+    return {
+      service: 'Windshield replacement', price: 'from $249', time: '90 min',
+      extra: 'ADAS recalibration · from $199',
+      note: damage === 'crack'
+        ? 'A spreading crack can’t be repaired safely. If your windshield carries a camera, we recalibrate it.'
+        : 'Don’t drive with a shattered windshield: our van comes to you.',
+    };
+  }
+  if (glass === 'rear') return {
+    service: 'Rear glass replacement', price: 'from $229', time: '60 min',
+    note: 'Rear glass is tempered: it is replaced, never repaired. Heating and antenna reconnected.',
+  };
+  return {
+    service: 'Side window replacement', price: 'from $179', time: '45 min',
+    note: 'Side glass is tempered: it is replaced, never repaired. Full interior vacuum included.',
+  };
+}
+
 /* ---------- Price rows ---------- */
 export const prices = [
   { name: 'Windshield — Replacement', detail: 'OE-grade glass · lifetime leak warranty', price: 'from $249' },

@@ -1,5 +1,4 @@
-import PageHero from '@/components/PageHero';
-import DetailList from '@/components/DetailList';
+import GlassReel from '@/components/GlassReel';
 import Faq from '@/components/Faq';
 import Closing from '@/components/Closing';
 import { pageMetadata } from '@/lib/seo';
@@ -10,8 +9,7 @@ export const metadata = pageMetadata('services', '/services', IMG.shop);
 export default function ServicesPage() {
   return (
     <>
-      <PageHero {...servicesPage.hero} />
-      <DetailList />
+      <GlassReel />
       <Faq />
       <Closing {...servicesPage.closing} />
     </>

@@ -51,6 +51,7 @@ export default function Chrome() {
       bar.style.width = (self.progress * 100) + '%';
       const y = self.scroll();
       nav.classList.toggle('nav--hidden', y > lastY && y > 300 && !menu.classList.contains('is-open'));
+      nav.classList.toggle('nav--scrolled', y > 80);
       lastY = y;
     } });
     const onClick = (e: MouseEvent) => {

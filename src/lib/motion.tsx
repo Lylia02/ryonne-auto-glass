@@ -188,3 +188,23 @@ export function enterPage(page: HTMLElement, path: string) {
   gsap.fromTo(page, { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out', clearProps: 'opacity' });
   playIntro(curtain, { nav: false, onCovered: hideCurtain });
 }
+
+/** Cards that lean toward the pointer, with a light that follows it (--mx / --my).
+    Returns a cleanup function. Pointer devices only. */
+export function tiltCards(cards: HTMLElement[], { x = 10, y = 8 } = {}) {
+  const { finePointer, reduce } = env();
+  if (!finePointer || reduce) return () => {};
+  const offs = cards.map(card => {
+    const rx = gsap.quickTo(card, 'rotationX', { duration: .8, ease: 'power3.out' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: .8, ease: 'power3.out' });
+    const move = (e: MouseEvent) => {
+      const r = card.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      ry((px - .5) * x); rx(-(py - .5) * y);
+      card.style.setProperty('--mx', `${px * 100}%`); card.style.setProperty('--my', `${py * 100}%`);
+    };
+    const leave = () => { rx(0); ry(0); };
+    card.addEventListener('mousemove', move); card.addEventListener('mouseleave', leave);
+    return () => { card.removeEventListener('mousemove', move); card.removeEventListener('mouseleave', leave); };
+  });
+  return () => offs.forEach(f => f());
+}
