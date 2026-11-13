@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero';
 import ShiftCinema from '@/components/ShiftCinema';
 import Surfaces from '@/components/Surfaces';
-import BayProcess from '@/components/BayProcess';
+import ProcessFilm from '@/components/ProcessFilm';
 import Arrival from '@/components/Arrival';
 import RealValue from '@/components/RealValue';
 import WiperReviews from '@/components/WiperReviews';
@@ -16,7 +16,7 @@ export default function HomePage() {
       <Hero />
       <ShiftCinema />
       <Surfaces />
-      <BayProcess />
+      <ProcessFilm />
       <Arrival />
       <RealValue />
       <WiperReviews />

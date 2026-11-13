@@ -789,28 +789,41 @@ html[data-gate="seen"] .curtain{visibility:visible}
 .sf__cap{position:absolute;right:20px;bottom:18px;z-index:2;margin:0;font-size:clamp(18px,1.8vw,28px);text-align:right}
 .sf__mtext{display:none}
 
-/* ---------- chapter: how it works (service bay, 3D) ---------- */
-.bp{position:relative;height:440vh;background:var(--bg)}
-.bp__stage{position:sticky;top:0;height:100vh;overflow:hidden}
-.bp__scene{position:absolute;inset:0;opacity:0;transition:opacity 1.4s var(--ease-out)}
-.bp.is-ready .bp__scene{opacity:1}
-.bp__canvas{position:absolute!important;inset:0}
-.bp__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(7,8,13,.92),rgba(7,8,13,.55) 32%,transparent 58%),linear-gradient(180deg,rgba(7,8,13,.7),transparent 25%,transparent 75%,rgba(7,8,13,.8))}
-.bp__head{position:absolute;left:var(--pad);top:clamp(100px,14vh,140px);display:flex;flex-direction:column;gap:14px}
-.bp__head .mono{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6)}
-.bp__head .mono i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-.bp__head h2{font-size:clamp(22px,2.2vw,34px);color:rgba(255,255,255,.85)}
-.bp__copy{position:absolute;left:var(--pad);top:50%;transform:translateY(-35%);width:min(440px,calc(100% - 2 * var(--pad)));height:300px}
-.bp__step{position:absolute;inset:0;display:flex;flex-direction:column;gap:18px;opacity:0;filter:blur(12px);transform:translateY(20px);transition:opacity .6s,filter .7s,transform .8s var(--ease-out)}
-.bp__step.is-on{opacity:1;filter:none;transform:none}
-.bp__step .mono{color:var(--accent)}
-.bp__step h3{font-size:clamp(34px,3.8vw,62px)}
-.bp__step p{margin:0;color:rgba(255,255,255,.72);font-size:15px;line-height:1.6}
-.bp__dashes{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
-.bp__dashes button{all:unset;cursor:pointer;display:block;width:16px;height:2px;background:rgba(255,255,255,.3);transition:width .5s var(--ease),background .5s}
-.bp__dashes button.is-on{width:34px;background:#fff}
-.bp__dashes button:focus-visible{outline:1px solid #fff;outline-offset:4px}
-.bp__hud{position:absolute;right:var(--pad);bottom:clamp(90px,12vh,120px);color:rgba(255,255,255,.55);font-size:10px}
+/* ---------- chapter: how it works (a strip of four photos) ---------- */
+.pf{position:relative;height:calc(100vh + 4 * 60vh);background:var(--bg);--fill:0}
+.pf__stage{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:clamp(24px,4vh,44px);padding:clamp(90px,12vh,120px) var(--pad) clamp(40px,7vh,70px)}
+.pf__head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.pf__head .mono{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6)}
+.pf__head .mono i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.pf__head h2{font-size:clamp(28px,3.4vw,56px);order:-1}
+.pf__strip{list-style:none;margin:0;padding:0;flex:1;min-height:0;display:flex;gap:10px}
+.pf__panel{position:relative;flex:1;min-width:0;overflow:hidden;border-radius:14px;cursor:pointer;background:#000;transition:flex-grow 1s var(--ease)}
+.pf__panel.is-on{flex-grow:4.2;cursor:default}
+.pf__panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.45) contrast(1.1);transform:scale(1.12);transition:filter 1s,transform 1.4s var(--ease-out)}
+.pf__panel.is-on img{filter:none;transform:scale(1)}
+.pf__panel:not(.is-on):hover img{filter:grayscale(1) brightness(.65) contrast(1.1)}
+.pf__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 30%,transparent 45%,rgba(0,0,0,.88))}
+.pf__line{position:absolute;left:20px;right:20px;top:18px;height:2px;background:rgba(255,255,255,.2);opacity:0;transition:opacity .6s}
+.pf__line i{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;transform:scaleX(var(--fill))}
+.pf__panel.is-on .pf__line{opacity:1}
+.pf__num{position:absolute;left:18px;top:34px;font-size:clamp(28px,3vw,48px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);transition:opacity .5s}
+.pf__label{position:absolute;left:22px;bottom:24px;color:rgba(255,255,255,.8);writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;transition:opacity .4s}
+.pf__panel.is-on .pf__label{opacity:0}
+.pf__copy{position:absolute;left:clamp(22px,2.6vw,40px);right:clamp(22px,2.6vw,40px);bottom:clamp(22px,4vh,40px);max-width:520px;display:flex;flex-direction:column;gap:14px;opacity:0;filter:blur(10px);transform:translateY(18px);transition:opacity .5s,filter .6s,transform .8s var(--ease-out);pointer-events:none}
+.pf__panel.is-on .pf__copy{opacity:1;filter:none;transform:none;transition-delay:.35s}
+.pf__copy .mono{color:var(--accent);font-size:10px}
+.pf__copy h3{font-size:clamp(30px,3.2vw,54px)}
+.pf__copy p{margin:0;color:rgba(255,255,255,.8);font-size:15px;line-height:1.6}
+@media (max-width:980px),(prefers-reduced-motion:reduce){
+  .pf{height:auto;padding:90px 0}
+  .pf__stage{position:relative;height:auto;padding:0 var(--pad)}
+  .pf__head{flex-direction:column;align-items:flex-start;gap:10px}
+  .pf__strip{flex-direction:column;gap:14px}
+  .pf__panel,.pf__panel.is-on{flex:none;height:min(110vw,520px);cursor:default}
+  .pf__panel img{filter:none;transform:none}
+  .pf__line,.pf__label{display:none}
+  .pf__copy{opacity:1;filter:none;transform:none}
+}
 
 /* ---------- chapter: real value ---------- */
 .rv{position:relative;color:var(--ink);background:linear-gradient(180deg,var(--bg) 0,var(--bone) 45vh,var(--bone) calc(100% - 45vh),var(--bg) 100%);padding:clamp(200px,32vh,300px) var(--pad);display:flex;flex-direction:column;align-items:center}
@@ -844,12 +857,6 @@ html[data-gate="seen"] .curtain{visibility:visible}
   .rv__switch button{padding:12px 16px}
 }
 @media (max-width:980px){
-  .bp{height:400vh}
-  .bp__shade{background:linear-gradient(180deg,rgba(7,8,13,.75),transparent 30%,transparent 45%,rgba(7,8,13,.95) 75%)}
-  .bp__copy{top:auto;bottom:clamp(60px,9vh,90px);transform:none;height:260px}
-  .bp__step h3{font-size:30px}
-  .bp__dashes{display:none}
-  .bp__hud{display:none}
   .rv{padding:160px var(--pad)}
 }
 @media (prefers-reduced-motion:reduce){
@@ -883,11 +890,11 @@ html[data-gate="seen"] .curtain{visibility:visible}
 }
 
 /* ---------- film grain + vignette over the 3D chapters (they read as footage, not renders) ---------- */
-.sc__stage::after,.bp__stage::after,.ar__stage::after{content:'';position:absolute;inset:-50%;pointer-events:none;z-index:1;opacity:.11;mix-blend-mode:overlay;
+.sc__stage::after,.ar__stage::after{content:'';position:absolute;inset:-50%;pointer-events:none;z-index:1;opacity:.11;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain .9s steps(6) infinite}
-.sc__stage::before,.bp__stage::before,.ar__stage::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55))}
-.sc__copy,.sc__night,.bp__head,.bp__copy,.bp__dashes,.bp__hud,.ar__copy,.ar__ping{z-index:2}
+.sc__stage::before,.ar__stage::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55))}
+.sc__copy,.sc__night,.ar__copy,.ar__ping{z-index:2}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-2%)}60%{transform:translate(-2%,-4%)}80%{transform:translate(4%,2%)}100%{transform:translate(0,0)}}
-@media (prefers-reduced-motion:reduce){.sc__stage::after,.bp__stage::after,.ar__stage::after{animation:none}.ar{height:auto}.ar__stage{position:relative}}
+@media (prefers-reduced-motion:reduce){.sc__stage::after,.ar__stage::after{animation:none}.ar{height:auto}.ar__stage{position:relative}}
 .sc__text em{font-style:normal;color:#ff5a6b}

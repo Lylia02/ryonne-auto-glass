@@ -233,7 +233,7 @@ export const bay = {
   kicker: 'How it works',
   title: 'Four steps, one bay',
   step: 'Step',
-  shots: ['Shot 01 · VIN match', 'Shot 02 · Glass scan', 'Shot 03 · Pinch-weld prep', 'Shot 04 · Set & cure'],
+  shots: ['VIN match', 'Glass scan', 'Pinch-weld prep', 'Set & cure'],
 };
 
 export const surfaces = {
