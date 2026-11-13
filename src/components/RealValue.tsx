@@ -64,7 +64,6 @@ export default function RealValue() {
         <div className="rv__copy" role="tabpanel">
           {t.cards.map((c, i) => (
             <article key={`${tab}-${i}`} className={`rv__item${i === step ? ' is-on' : ''}`} aria-hidden={i !== step}>
-              <span className="rv__n mono">{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')} · {c.label}</span>
               <h3 className="h-wide">{c.title}</h3>
               <p>{c.text}</p>
               <span className="rv__fact"><b>{c.metric}</b></span>
