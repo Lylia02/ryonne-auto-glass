@@ -1,23 +1,23 @@
 import FleetHero from '@/components/FleetHero';
-import StatsBand from '@/components/StatsBand';
-import Manifesto from '@/components/Manifesto';
-import Tiers from '@/components/Tiers';
-import Process from '@/components/Process';
-import Closing from '@/components/Closing';
+import FleetCost from '@/components/FleetCost';
+import FleetNight from '@/components/FleetNight';
+import FleetPrograms from '@/components/FleetPrograms';
+import FleetCall from '@/components/FleetCall';
 import { pageMetadata } from '@/lib/seo';
-import { fleetPage, fleetProcess, IMG } from '@/lib/site';
+import { IMG } from '@/lib/site';
 
 export const metadata = pageMetadata('fleet', '/fleet', IMG.fleet);
 
+/* Fleet: the problem (a day off the road), the answer (a night at the
+   depot), the programs, then one call to action. */
 export default function FleetPage() {
   return (
     <>
       <FleetHero />
-      <StatsBand />
-      <Manifesto {...fleetPage.manifesto} />
-      <Tiers />
-      <Process data={fleetProcess} />
-      <Closing {...fleetPage.closing} />
+      <FleetCost />
+      <FleetNight />
+      <FleetPrograms />
+      <FleetCall />
     </>
   );
 }

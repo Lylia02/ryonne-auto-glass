@@ -1,49 +1,49 @@
 'use client';
 /* =========================================================
-   Fleet page hero — three cars in a dark showroom (3D).
-   Same markup as <PageHero> (so the page intro plays on it); the
-   photo stays underneath as a poster until the 3D scene is ready.
+   Fleet page hero — the depot at night, the title in wide type and a
+   small clock that runs from 05:42 to 06:59: the job is done before
+   the first shift. Same markup as <PageHero> so the page intro plays.
    ========================================================= */
-import { useCallback, useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
+import { useRef } from 'react';
 import Image from 'next/image';
-import Rich from './Rich';
-import { ScrollTrigger, useGsap } from '@/lib/motion';
+import { env, gsap, useGsap } from '@/lib/motion';
 import { fleetPage } from '@/lib/site';
 
-const Scene = dynamic(() => import('./FleetScene'), { ssr: false });
+const h = fleetPage.hero;
+const toMin = (t: string) => { const [a, b] = t.split(':').map(Number); return a * 60 + b; };
+const fmt = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 
 export default function FleetHero() {
   const ref = useRef<HTMLElement>(null);
-  const progress = useRef(0);
-  const [ready, setReady] = useState(false);
-  const [compact, setCompact] = useState(false);
-  const [onScreen, setOnScreen] = useState(true);
-  const h = fleetPage.hero;
-
-  useEffect(() => {
-    const mq = matchMedia('(max-width: 980px)');
-    const on = () => setCompact(mq.matches); on(); mq.addEventListener('change', on);
-    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting));
-    io.observe(ref.current!);
-    return () => { mq.removeEventListener('change', on); io.disconnect(); };
-  }, []);
 
   useGsap(() => {
-    ScrollTrigger.create({ trigger: ref.current, start: 'top top', end: 'bottom top', onUpdate: st => { progress.current = st.progress; } });
+    const root = ref.current!;
+    const clock = root.querySelector<HTMLElement>('.fh__time')!;
+    const a = toMin(h.clockFrom), b = toMin(h.clockTo);
+    const o = { m: a };
+    if (env().reduce) { clock.textContent = h.clockTo; return; }
+    gsap.timeline({ delay: 1.6 })
+      .from(root.querySelector('.fh__clock'), { opacity: 0, y: 20, duration: .9, ease: 'power3.out' })
+      .to(o, { m: b, duration: 3.4, ease: 'power2.inOut', onUpdate: () => { clock.textContent = fmt(Math.round(o.m)); } }, '-=.4')
+      .add(() => root.classList.add('is-done'));
+    // the depot drifts slower than the page, the title lifts away
+    gsap.to(root.querySelector('.phero__bg'), { yPercent: 14, ease: 'none', scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to(root.querySelector('.phero__inner'), { y: -120, opacity: 0, ease: 'none', scrollTrigger: { trigger: root, start: '30% top', end: 'bottom top', scrub: true } });
   }, []);
 
-  const onReady = useCallback(() => setReady(true), []);
-
   return (
-    <section className={`phero fhero${ready ? ' is-ready' : ''}`} ref={ref}>
+    <section className="phero fh" ref={ref}>
       <Image src={h.img.src} alt="" className="phero__bg" fill priority sizes="100vw" />
-      <div className="fhero__scene"><Scene progress={progress} compact={compact} active={onScreen} onReady={onReady} /></div>
       <div className="phero__shade"></div>
-      <span className="fhero__tag"><b></b>Fleet showroom · live 3D</span>
+      <div className="fh__clock" aria-hidden="true">
+        <span className="mono"><i></i>{h.clockLabel}</span>
+        <b className="fh__time h-wide">{h.clockFrom}</b>
+      </div>
       <div className="phero__inner">
-        <div><span className="eyebrow phero__eyebrow">{h.eyebrow}</span>
-          <h1 className="h-serif">{h.lines.map(l => <span className="line" key={l}><span><Rich text={l} /></span></span>)}</h1></div>
+        <div>
+          <span className="mono phero__eyebrow">{h.eyebrow}</span>
+          <h1 className="h-wide">{h.lines.map(l => <span className="line" key={l}><span>{l}</span></span>)}</h1>
+        </div>
         <p>{h.text}</p>
       </div>
     </section>

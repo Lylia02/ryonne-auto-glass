@@ -73,7 +73,6 @@ export const menu = [
   { label: 'Fleet', href: '/fleet' },
   { label: 'Contact', href: '/contact' },
 ];
-
 export const footerMenu = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
@@ -146,18 +145,6 @@ export const homeProcess: ProcessData = {
     { title: 'Precision\ninstall', img: IMG.hero, text: 'New glass set with OE-grade urethane to factory tolerance, ADAS cameras recalibrated and verified, and a safe drive-away time you can trust.' },
   ],
 };
-export const fleetProcess: ProcessData = {
-  eyebrow: 'How a fleet job runs',
-  title: 'From your call\n*to the road*',
-  skipHref: '#contact-cta',
-  steps: [
-    { title: 'One\ncall', img: IMG.rain, text: 'Your fleet manager texts or calls one number with the plate and the damage. We confirm a slot within the hour.' },
-    { title: 'Depot\nvisit', img: IMG.fleet, text: 'The van arrives at your depot before the first shift with the right glass already loaded, matched by VIN.' },
-    { title: 'Fit &\ncalibrate', img: IMG.adas, text: 'Glass fitted, urethane cured, ADAS recalibrated and documented — the vehicle is cleared to drive before the driver clocks in.' },
-    { title: 'One\ninvoice', img: IMG.shop, text: 'Every job lands on a single monthly invoice with plate, date, part and calibration report attached.' },
-  ],
-};
-
 /* ---------- Services (carousel on home + detail page) ---------- */
 export const services = [
   {
@@ -419,22 +406,52 @@ export const faq = [
 
 /* ---------- Fleet page ---------- */
 export const fleetPage = {
-  hero: { eyebrow: 'Commercial fleets', lines: ['Zero', '*downtime*'], text: 'Priority glass maintenance for vans, trucks and corporate fleets in Columbus. One invoice a month, one number to call, vehicles back on the road the same day.', img: IMG.fleet },
-  stats: [
-    { value: 140, suffix: '+', label: 'Fleet vehicles' },
-    { value: 24, suffix: 'h', label: 'Max turnaround' },
-    { value: 0, prefix: '$', label: 'Travel fee' },
-    { value: 1, label: 'Monthly invoice' },
-  ],
-  manifesto: {
-    eyebrow: 'Why fleets choose Ryonne',
-    text: 'A van off the road costs you *$600 a day*. We come to your depot before the first shift, fit the glass, recalibrate, and the driver never knows it was *cracked*',
-    sub: 'Before 7am · On site · Invoiced monthly',
-    left: { img: IMG.van, alt: '' },
-    right: { img: IMG.urethane, alt: '' },
+  hero: {
+    eyebrow: 'Commercial fleets', lines: ['Zero', 'downtime'],
+    text: 'Glass maintenance for vans, trucks and company cars across Columbus. We work at your depot before the first shift, so the vehicle is ready when the driver is.',
+    img: IMG.fleet, clockFrom: '05:42', clockTo: '06:59', clockLabel: 'Job done before the first shift',
   },
-  tiersHead: { eyebrow: 'Programs', title: 'Three ways to *partner*' },
-  closing: { eyebrow: 'Keep your fleet', title: 'On the road', cta: 'Request fleet pricing', href: '/contact?fleet=priority', img: IMG.fleet, id: 'contact-cta' },
+  cost: {
+    kicker: 'The real price of a crack',
+    lead: 'A van parked with a cracked windshield loses about $600 of work a day.',
+    perDay: 600, days: 3, day: 'Day',
+    turn: ['Or we fix it', 'before 7am.'],
+    sub: 'At your depot, before the first shift. The driver never knows it was cracked.',
+  },
+  night: {
+    kicker: 'One night at the depot',
+    title: 'From the call *to the first shift*',
+    from: 21, to: 31, // 21:00 to 07:00 the next morning
+    steps: [
+      { time: '21:00', h: 21, title: 'The call', text: 'Your fleet manager texts the plate and a photo of the damage. We confirm a slot within the hour.', img: IMG.rain },
+      { time: '05:30', h: 29.5, title: 'At the depot', text: 'The van pulls in before anyone else, with the right glass already loaded, matched by VIN.', img: IMG.van },
+      { time: '06:15', h: 30.25, title: 'Glass set', text: 'Old glass out, frame cleaned and primed, new windshield set in high-strength urethane.', img: IMG.hero },
+      { time: '06:50', h: 30.83, title: 'Calibrated', text: 'Camera and radar recalibrated and documented. The report goes straight to your inbox.', img: IMG.adas },
+      { time: '07:00', h: 31, title: 'On the road', text: 'The driver clocks in, takes the keys and drives off. The job shows up on next month\u2019s single invoice.', img: IMG.drive },
+    ],
+  },
+  programs: {
+    kicker: 'Programs', title: 'Three ways *to partner*',
+    ask: 'How many vehicles?', unit: 'vehicles', min: 1, max: 120, start: 24,
+    rows: [
+      ['Priority scheduling', 'starter', 'priority', 'enterprise'],
+      ['On site, no travel fee', 'starter', 'priority', 'enterprise'],
+      ['One monthly invoice', 'starter', 'priority', 'enterprise'],
+      ['Insurance claims handled', 'starter', 'priority', 'enterprise'],
+      ['Dedicated account manager', 'priority', 'enterprise'],
+      ['Pre-shift slots from 6am', 'priority', 'enterprise'],
+      ['Quarterly glass inspection', 'priority', 'enterprise'],
+      ['ADAS compliance reports', 'priority', 'enterprise'],
+      ['Technician on retainer', 'enterprise'],
+      ['Glass kept in stock for your models', 'enterprise'],
+      ['Several sites covered', 'enterprise'],
+    ] as string[][],
+  },
+  closing: {
+    kicker: 'Fleet pricing', lines: ['Keep them', 'on the road'],
+    text: 'Tell us how many vehicles you run. You get a price and a named contact within one working day.',
+    cta: 'Request fleet pricing', href: '/contact?fleet=priority', id: 'contact-cta',
+  },
 };
 
 export const tiers = [
