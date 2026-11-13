@@ -7,11 +7,11 @@ import { parallax, ScrollTrigger, SplitText, useGsap } from '@/lib/motion';
 import type { Img } from '@/lib/site';
 
 type Side = { img: Img; alt: string };
-type Props = { id?: string; eyebrow?: string; text: string; sub: string; left: Side; right: Side };
+type Props = { id?: string; eyebrow: string; text: string; sub: string; left: Side; right: Side };
 
 const sizes = '20vw';
 
-export default function Manifesto({ id, text, sub, left, right }: Props) {
+export default function Manifesto({ id, eyebrow, text, sub, left, right }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useGsap(() => {
@@ -27,6 +27,7 @@ export default function Manifesto({ id, text, sub, left, right }: Props) {
     <section className="manifesto" id={id} ref={ref}>
       <figure className="manifesto__img manifesto__img--l" data-speed="0.85"><Image src={left.img.src} width={left.img.w} height={left.img.h} alt={left.alt} sizes={sizes} /></figure>
       <div className="manifesto__center">
+        <span className="eyebrow">{eyebrow}</span>
         <h2 className="manifesto__text h-display" data-words><Rich text={text} /></h2>
         <p className="manifesto__sub h-serif">{sub}</p>
       </div>

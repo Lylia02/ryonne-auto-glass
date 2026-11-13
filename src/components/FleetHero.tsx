@@ -42,7 +42,7 @@ export default function FleetHero() {
       <div className="phero__shade"></div>
       <span className="fhero__tag"><b></b>Fleet showroom · live 3D</span>
       <div className="phero__inner">
-        <div>
+        <div><span className="eyebrow phero__eyebrow">{h.eyebrow}</span>
           <h1 className="h-serif">{h.lines.map(l => <span className="line" key={l}><span><Rich text={l} /></span></span>)}</h1></div>
         <p>{h.text}</p>
       </div>

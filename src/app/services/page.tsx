@@ -1,17 +1,17 @@
-import GlassReel from '@/components/GlassReel';
+import ServiceIndex from '@/components/ServiceIndex';
 import Faq from '@/components/Faq';
-import Closing from '@/components/Closing';
 import { pageMetadata } from '@/lib/seo';
-import { IMG, servicesPage } from '@/lib/site';
+import { IMG } from '@/lib/site';
 
 export const metadata = pageMetadata('services', '/services', IMG.shop);
 
+/* Services: the five services one per scroll step (click one for its own page),
+   then the questions drivers ask. */
 export default function ServicesPage() {
   return (
     <>
-      <GlassReel />
+      <ServiceIndex />
       <Faq />
-      <Closing {...servicesPage.closing} />
     </>
   );
 }

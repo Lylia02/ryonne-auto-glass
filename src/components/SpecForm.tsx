@@ -64,6 +64,7 @@ export default function SpecForm({ defaultService = 'mobile', defaultMessage = '
     <section className="spec" id="contact" ref={ref}>
       <div className="spec__left">
         <div className="spec__sticky">
+          <span className="eyebrow">{f.eyebrow}</span>
           <h2 className="h-wide"><Rich text={f.title} /></h2>
           <p>{f.text}</p>
           <a href={`tel:${business.tel}`} className="spec__phone h-serif">{business.phone}</a>

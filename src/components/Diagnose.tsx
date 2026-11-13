@@ -102,8 +102,8 @@ export default function Diagnose({ showroom = false }: { showroom?: boolean }) {
   const book = () => {
     const dmg = d.damage.find(x => x.id === damage);
     const detail: Prefill = mode === 'model' && g && dmg && r
-      ? { glass: g.form, message: `3D diagnosis: ${g.label.toLowerCase()}, ${dmg.label.toLowerCase()}. Suggested: ${r.service}${r.extra ? ` + ${r.extra.split(' · ')[0]}` : ''}` }
-      : { glass: 'Not sure', message: 'I have a photo of the damage (attached)' };
+      ? { glass: g.form, message: `3D diagnosis: ${g.label.toLowerCase()}, ${dmg.label.toLowerCase()}. Suggested: ${r.service}${r.extra ? ` + ${r.extra.split(' · ')[0]}` : ''}.` }
+      : { glass: 'Not sure', message: 'I have a photo of the damage (attached).' };
     window.dispatchEvent(new CustomEvent<Prefill>(PREFILL_EVENT, { detail }));
     const form = document.getElementById('contact');
     if (form) scrollToTarget(form);
@@ -115,6 +115,7 @@ export default function Diagnose({ showroom = false }: { showroom?: boolean }) {
       <div className="dx__sticky">
       {showroom && (
         <div className="sr__overlay">
+          <p className="sr__label eyebrow">{home.makes.label}</p>
           <ul className="sr__grid">{gridMakes.map(x => <li key={x}>{x}</li>)}</ul>
           <h2 className="sr__title h-serif"><Rich text={home.makes.title} /></h2>
         </div>
@@ -154,6 +155,7 @@ export default function Diagnose({ showroom = false }: { showroom?: boolean }) {
 
       <div className="dx__panel" data-lenis-prevent>
         <div className="dx__top">
+          <span className="eyebrow">{d.eyebrow}</span>
           <div className="dx__modes" role="tablist" aria-label="How do you want to show us the damage?">
             {(['model', 'photo'] as const).map(m => (
               <button key={m} type="button" role="tab" aria-selected={mode === m} className={mode === m ? 'is-on' : ''} onClick={() => switchMode(m)}>{d.modes[m]}</button>
@@ -242,8 +244,8 @@ function RequestForm({ mode, glass, damage, onBack, onPhoto, onSent, onFullForm 
   const dmg = d.damage.find(x => x.id === damage);
   const r = glass && damage ? diagnoseResult(glass, damage) : null;
   const message = mode === 'model' && g && dmg && r
-    ? `3D diagnosis: ${g.label.toLowerCase()}, ${dmg.label.toLowerCase()}. Suggested: ${r.service}${r.extra ? ` + ${r.extra.split(' · ')[0]}` : ''}`
-    : `Photo request: ${photoGlass.toLowerCase()}`;
+    ? `3D diagnosis: ${g.label.toLowerCase()}, ${dmg.label.toLowerCase()}. Suggested: ${r.service}${r.extra ? ` + ${r.extra.split(' · ')[0]}` : ''}.`
+    : `Photo request: ${photoGlass.toLowerCase()}.`;
   const err = (k: string) => state.errors?.[k] ? <em className="dx__ferr">{state.errors[k]}</em> : null;
   const pick = (f: File | undefined) => { setFileName(f?.name ?? null); onPhoto(f ?? null); };
 

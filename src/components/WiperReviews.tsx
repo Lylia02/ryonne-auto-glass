@@ -122,6 +122,7 @@ export default function WiperReviews() {
   return (
     <section className="wr" id="reviews" ref={ref}>
       <div className="wr__side">
+        <span className="eyebrow">{w.eyebrow}</span>
         <div className="wr__score"><b>{w.score}</b><span className="wr__stars" aria-label="5 out of 5">★★★★★</span></div>
         <p className="wr__label">{w.label}</p>
         <div className="wr__nav">

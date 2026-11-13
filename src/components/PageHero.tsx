@@ -8,9 +8,9 @@ import CrackOverlay from './CrackOverlay';
 import { parallax, useGsap } from '@/lib/motion';
 import type { Img } from '@/lib/site';
 
-type Props = { eyebrow?: string; lines: string[]; text: string; img: Img; style?: CSSProperties; imgStyle?: CSSProperties; crack?: boolean };
+type Props = { eyebrow: string; lines: string[]; text: string; img: Img; style?: CSSProperties; imgStyle?: CSSProperties; crack?: boolean };
 
-export default function PageHero({ lines, text, img, style, imgStyle, crack }: Props) {
+export default function PageHero({ eyebrow, lines, text, img, style, imgStyle, crack }: Props) {
   const ref = useRef<HTMLElement>(null);
   useGsap(() => { parallax(ref.current!); }, []);
 
@@ -20,7 +20,7 @@ export default function PageHero({ lines, text, img, style, imgStyle, crack }: P
       <div className="phero__shade"></div>
       {crack && <CrackOverlay />}
       <div className="phero__inner">
-        <div><h1 className="h-serif">{lines.map(l => <span className="line" key={l}><span><Rich text={l} /></span></span>)}</h1></div>
+        <div><span className="eyebrow phero__eyebrow">{eyebrow}</span><h1 className="h-serif">{lines.map(l => <span className="line" key={l}><span><Rich text={l} /></span></span>)}</h1></div>
         <p>{text}</p>
       </div>
     </section>
