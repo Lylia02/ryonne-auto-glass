@@ -41,6 +41,18 @@ section{position:relative}
 .gate__bar i{display:block;height:100%;width:0;background:#fff}
 .gate__enter{position:absolute;bottom:80px;background:none;border:0;border-bottom:1px solid #fff;padding:4px 0;font-family:var(--serif);font-size:26px;letter-spacing:.02em;opacity:0;pointer-events:none;transition:opacity .6s}
 .gate__enter.is-ready{opacity:1;pointer-events:auto}
+/* the gate is a pane of glass: crack lines, impact, flash, then shards */
+.gate__logo,.gate__line,.gate__bar,.gate__enter{z-index:3}
+.gate__line{position:relative}
+.gate__crack{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;filter:drop-shadow(0 0 1.5px rgba(255,255,255,.6))}
+.gate__crack path{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.gate__ray{stroke-width:1.2;stroke-opacity:.8}
+.gate__ring{stroke-width:.9;stroke-opacity:.5}
+.gate__hit{position:absolute;z-index:2;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,.35) 22%,transparent 62%)}
+.gate__flash{position:absolute;inset:0;z-index:4;opacity:0;pointer-events:none;mix-blend-mode:screen}
+.gate__shards{position:absolute;inset:0;z-index:1;visibility:hidden;pointer-events:none}
+.gate__shards i{position:absolute;inset:0;background:linear-gradient(135deg,#0b0c12 0%,#000 45%,#07080d 100%);will-change:transform}
+.gate__shards i::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.07) 50%,transparent 65%)}
 
 /* ---------- cursor ---------- */
 .cursor{position:fixed;left:0;top:0;z-index:300;pointer-events:none;mix-blend-mode:difference;display:none}
@@ -852,7 +864,6 @@ html[data-gate="seen"] .curtain{visibility:visible}
 .rv__copy{position:absolute;left:var(--pad);top:50%;transform:translateY(-38%);width:min(620px,calc(100% - 2 * var(--pad)));height:330px;z-index:2}
 .rv__item{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px;opacity:0;filter:blur(14px);transform:translateY(24px);transition:opacity .6s,filter .7s,transform .9s var(--ease-out);pointer-events:none}
 .rv__item.is-on{opacity:1;filter:none;transform:none;pointer-events:auto}
-.rv__n{color:var(--accent);font-size:10px}
 .rv__item h3{font-size:clamp(34px,4.2vw,72px);color:#fff}
 .rv__item p{margin:0;max-width:440px;color:rgba(255,255,255,.75);font-size:16px;line-height:1.6}
 .rv__fact{margin-top:6px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
