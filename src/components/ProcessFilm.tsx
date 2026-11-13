@@ -49,7 +49,6 @@ export default function ProcessFilm() {
     <section className="pf" id="process" ref={ref}>
       <div className="pf__stage">
         <header className="pf__head">
-          <span className="mono"><i></i>{bay.kicker}</span>
           <h2 className="h-wide">{bay.title}</h2>
         </header>
 
