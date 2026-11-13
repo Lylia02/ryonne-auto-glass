@@ -68,20 +68,17 @@ export const gridMakes = [...marqueeMakes, 'Audi', 'Volkswagen', 'Mazda', 'Dodge
 
 /* ---------- Navigation ---------- */
 export const menu = [
-  { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
-  { label: 'Process', href: '/#process' },
   { label: 'Diagnose in 3D', href: '/diagnose' },
   { label: 'Fleet', href: '/fleet' },
-  { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/contact' },
 ];
+
 export const footerMenu = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
   { label: 'Diagnose in 3D', href: '/diagnose' },
   { label: 'Fleet', href: '/fleet' },
-  { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/contact' },
 ];
 
