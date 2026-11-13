@@ -35,9 +35,8 @@ export default function ShiftCinema() {
     ScrollTrigger.create({ trigger: root, start: 'top top', end: 'bottom bottom', onUpdate: s => { progress.current = s.progress; } });
     const words = new SplitText(q('.sc__text'), { type: 'words', wordsClass: 'sc__word' }).words;
     gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: root, start: 'top 60%', end: 'bottom bottom', scrub: true } })
-      .fromTo(q('.sc__kicker'), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .08 }, .1)
       .fromTo(words, { opacity: .1, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: .04, stagger: .45 / words.length }, .16)
-      .to([q('.sc__kicker'), q('.sc__text')], { filter: 'blur(18px)', opacity: 0, duration: .12 }, .74)
+      .to(q('.sc__text'), { filter: 'blur(18px)', opacity: 0, duration: .12 }, .74)
       .fromTo(q('.sc__night'), { opacity: 0 }, { opacity: 1, duration: .16 }, .84);
   }, [], { fonts: true });
 
@@ -50,7 +49,6 @@ export default function ShiftCinema() {
         {near && <div className="sc__scene"><Scene progress={progress} active={onScreen} onReady={onReady} /></div>}
         <div className="sc__shade" aria-hidden="true"></div>
         <div className="sc__copy">
-          <span className="sc__kicker mono"><i></i>{cinema.kicker}</span>
           <p className="sc__text"><Rich text={cinema.text} /></p>
         </div>
         <div className="sc__night" aria-hidden="true"></div>

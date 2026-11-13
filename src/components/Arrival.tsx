@@ -50,7 +50,6 @@ export default function Arrival() {
         <div className="ar__scene">{near && <Scene progress={progress} compact={compact} active={onScreen} onReady={onReady} pin={pin} />}</div>
         <div className="ar__shade" aria-hidden="true"></div>
         <div className="ar__copy">
-          <span className="mono"><i></i>{t.eyebrow}</span>
           <h2 className="h-wide"><Rich text={t.title} /></h2>
           <p>{t.text}</p>
           <TLink href={t.href} className="btn btn--accent" data-magnetic>{t.cta} <i>»</i></TLink>

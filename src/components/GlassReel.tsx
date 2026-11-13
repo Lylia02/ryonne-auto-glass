@@ -63,7 +63,7 @@ export default function GlassReel() {
       {/* hero — same markup as <PageHero> so the page intro plays on it */}
       <section className="phero phero--reel" data-ch="-1">
         <div className="phero__inner">
-          <div><span className="eyebrow phero__eyebrow">{h.eyebrow}</span>
+          <div>
             <h1 className="h-serif">{h.lines.map(l => <span className="line" key={l}><span><Rich text={l} /></span></span>)}</h1></div>
           <p>{h.text}</p>
         </div>

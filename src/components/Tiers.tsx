@@ -56,7 +56,7 @@ export default function Tiers() {
 
   return (
     <section className="tiers tiers--gems" ref={ref}>
-      <div className="tiers__head"><span className="eyebrow">{h.eyebrow}</span><h2 className="h-serif" data-split><Rich text={h.title} /></h2></div>
+      <div className="tiers__head"><h2 className="h-serif" data-split><Rich text={h.title} /></h2></div>
       <div className="tiers__grid">
         {tiers.map(t => {
           const hot = 'hot' in t && t.hot;

@@ -9,8 +9,8 @@
   --bone:#f2f1ed; --bone2:#e7e5df; --ink:#111;
   --mute:#8a8a8a; --mute-d:#6a6a6a; --line:rgba(255,255,255,.1); --line-d:rgba(0,0,0,.1);
   --accent:#e8102a; --gold:#ffd400;
-  --serif:var(--font-sans),Helvetica,Arial,sans-serif;
-  --display:var(--font-sans),Helvetica,Arial,sans-serif;
+  --serif:var(--font-display),Helvetica,Arial,sans-serif;
+  --display:var(--font-display),Helvetica,Arial,sans-serif;
   --body:var(--font-sans),Helvetica,Arial,sans-serif;
   --pad:clamp(20px,5vw,80px);
   --ease:cubic-bezier(.76,0,.24,1); --ease-out:cubic-bezier(.16,1,.3,1);
@@ -343,9 +343,9 @@ html[data-gate="seen"] .curtain{visibility:visible}
 .spec__submit:disabled{opacity:.6;pointer-events:none}
 
 /* =========================================================
-   Typography — Manrope
+   Typography — Sora (headings) + Inter (body)
    The previous faces (Instrument Serif, Anton) were condensed;
-   Manrope is wider, so sizes and weights are re-tuned here.
+   Sora is wider, so sizes and weights are re-tuned here.
    Headline <em> = same face, light weight, softer tone.
    ========================================================= */
 .h-serif{font-weight:500;line-height:1.04;letter-spacing:-.035em}
@@ -743,7 +743,7 @@ html[data-gate="seen"] .curtain{visibility:visible}
 /* =========================================================
    Home chapters — cinematic, night palette
    ========================================================= */
-.h-wide{font-family:var(--font-wide),var(--display);font-stretch:125%;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.01em;margin:0}
+.h-wide{font-family:var(--display);font-weight:600;text-transform:uppercase;line-height:.95;letter-spacing:-.025em;margin:0}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
 
 /* ---------- chapter: clear ahead (3D drive at dusk) ---------- */
@@ -781,7 +781,7 @@ html[data-gate="seen"] .curtain{visibility:visible}
 .sf__screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .sf__screen::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 30%,transparent 55%,rgba(0,0,0,.85));pointer-events:none}
 .sf__top{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-size:10px;color:rgba(255,255,255,.65)}
-.sf__top b{color:#fff;font-family:var(--font-wide),var(--display);font-stretch:125%;font-weight:800;letter-spacing:.08em}
+.sf__top b{color:#fff;font-family:var(--display);font-weight:600;letter-spacing:.08em}
 .sf__ghost{position:absolute;left:20px;top:44px;z-index:1;font-size:clamp(46px,7vw,120px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.35);pointer-events:none;white-space:nowrap}
 .sf__hud{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;display:flex;gap:26px;font-size:9px;color:rgba(255,255,255,.55)}
 .sf__hud span{display:flex;flex-direction:column;gap:4px}

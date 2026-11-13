@@ -6,9 +6,9 @@ import TLink from './TLink';
 import { gsap, parallax, SplitText, useGsap } from '@/lib/motion';
 import type { Img } from '@/lib/site';
 
-type Props = { id?: string; eyebrow: string; title: string; cta: string; href: string; img: Img };
+type Props = { id?: string; eyebrow?: string; title: string; cta: string; href: string; img: Img };
 
-export default function Closing({ id, eyebrow, title, cta, href, img }: Props) {
+export default function Closing({ id, title, cta, href, img }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useGsap(() => {
@@ -23,7 +23,6 @@ export default function Closing({ id, eyebrow, title, cta, href, img }: Props) {
     <section className="closing" id={id} ref={ref}>
       <Image src={img.src} width={img.w} height={img.h} alt="" className="closing__bg" data-speed="0.8" sizes="100vw" />
       <div className="closing__inner">
-        <span className="eyebrow">{eyebrow}</span>
         <h2 className="h-serif closing__h" data-letters>{title}</h2>
         {href.startsWith('#')
           ? <a href={href} className="btn btn--ghost" data-magnetic>{cta}</a>

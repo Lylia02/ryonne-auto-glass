@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { sans } from './fonts';
-import { wide } from './fontWide';
+import { sans, display } from './fonts';
 import { MotionProvider } from '@/lib/motion';
 import { businessJsonLd, pageMetadata } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
@@ -24,7 +23,7 @@ const gateScript = `try{if(sessionStorage.getItem('${GATE_KEY}'))document.docume
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${wide.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${display.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: gateScript }} />
       </head>

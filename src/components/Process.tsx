@@ -22,7 +22,7 @@ export default function Process({ data }: { data: ProcessData }) {
   return (
     <section className="process" id="process" ref={ref}>
       <div className="process__pin">
-        <div className="process__head"><span className="eyebrow">{data.eyebrow}</span><h2 className="h-serif"><Rich text={data.title} /></h2></div>
+        <div className="process__head"><h2 className="h-serif"><Rich text={data.title} /></h2></div>
         <div className="process__titles">
           {data.steps.map((s, i) => <h3 key={i} className={`h-display process__title${active(i)}`} data-step={i}><Rich text={s.title} /></h3>)}
         </div>

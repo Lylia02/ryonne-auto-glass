@@ -143,10 +143,10 @@ export const homeProcess: ProcessData = {
   title: 'A considered process\n*built around your car*',
   skipHref: '#services',
   steps: [
-    { title: 'Vehicle\nintake', img: IMG.shop, text: 'Your VIN is checked against our glass database so the part matches the exact factory specification: tint band, rain sensor, heating elements, camera bracket.' },
-    { title: 'Damage\nscan', img: IMG.chip, text: 'Technicians inspect fracture depth and frame integrity, then document the damage for your insurer. If a chip can be saved, we repair it instead of replacing.' },
-    { title: 'Removal\n& prep', img: IMG.urethane, text: 'Damaged glass comes out without touching your paint. The pinch-weld is cleaned, primed and prepped for a bond that meets FMVSS 212 standards.' },
-    { title: 'Precision\ninstall', img: IMG.hero, text: 'New glass set with OE-grade urethane to factory tolerance, ADAS cameras recalibrated and verified, and a safe drive-away time you can trust.' },
+    { title: 'Vehicle\nintake', img: IMG.shop, text: 'Your VIN is checked against our glass database so the part matches the exact factory specification: tint band, rain sensor, heating elements, camera bracket' },
+    { title: 'Damage\nscan', img: IMG.chip, text: 'Technicians inspect fracture depth and frame integrity, then document the damage for your insurer. If a chip can be saved, we repair it instead of replacing' },
+    { title: 'Removal\n& prep', img: IMG.urethane, text: 'Damaged glass comes out without touching your paint. The pinch-weld is cleaned, primed and prepped for a bond that meets FMVSS 212 standards' },
+    { title: 'Precision\ninstall', img: IMG.hero, text: 'New glass set with OE-grade urethane to factory tolerance, ADAS cameras recalibrated and verified, and a safe drive-away time you can trust' },
   ],
 };
 export const fleetProcess: ProcessData = {
@@ -154,10 +154,10 @@ export const fleetProcess: ProcessData = {
   title: 'From your call\n*to the road*',
   skipHref: '#contact-cta',
   steps: [
-    { title: 'One\ncall', img: IMG.rain, text: 'Your fleet manager texts or calls one number with the plate and the damage. We confirm a slot within the hour.' },
-    { title: 'Depot\nvisit', img: IMG.fleet, text: 'The van arrives at your depot before the first shift with the right glass already loaded, matched by VIN.' },
-    { title: 'Fit &\ncalibrate', img: IMG.adas, text: 'Glass fitted, urethane cured, ADAS recalibrated and documented — the vehicle is cleared to drive before the driver clocks in.' },
-    { title: 'One\ninvoice', img: IMG.shop, text: 'Every job lands on a single monthly invoice with plate, date, part and calibration report attached.' },
+    { title: 'One\ncall', img: IMG.rain, text: 'Your fleet manager texts or calls one number with the plate and the damage. We confirm a slot within the hour' },
+    { title: 'Depot\nvisit', img: IMG.fleet, text: 'The van arrives at your depot before the first shift with the right glass already loaded, matched by VIN' },
+    { title: 'Fit &\ncalibrate', img: IMG.adas, text: 'Glass fitted, urethane cured, ADAS recalibrated and documented — the vehicle is cleared to drive before the driver clocks in' },
+    { title: 'One\ninvoice', img: IMG.shop, text: 'Every job lands on a single monthly invoice with plate, date, part and calibration report attached' },
   ],
 };
 
@@ -165,41 +165,41 @@ export const fleetProcess: ProcessData = {
 export const services = [
   {
     n: '01', name: 'Windshield Replacement', img: IMG.hero,
-    short: 'OE-grade glass set with high-strength urethane for structural integrity and a watertight seal. Lifetime leak warranty.',
+    short: 'OE-grade glass set with high-strength urethane for structural integrity and a watertight seal. Lifetime leak warranty',
     title: 'Windshield *replacement*', alt: 'Windshield being set onto an SUV',
-    text: 'OE-grade laminated glass matched to your VIN — tint band, rain sensor, heated wiper park, camera bracket — set with high-strength urethane to FMVSS 212 standards. Lifetime leak warranty, insurance handled for you.',
+    text: 'OE-grade laminated glass matched to your VIN — tint band, rain sensor, heated wiper park, camera bracket — set with high-strength urethane to FMVSS 212 standards. Lifetime leak warranty, insurance handled for you',
     facts: [['90 min', 'average install'], ['60 min', 'safe drive-away'], ['Lifetime', 'leak warranty']],
     price: 'from $249', cta: 'Get a quote', href: '/contact',
   },
   {
     n: '02', name: 'Rock Chip Repair', img: IMG.chip,
-    short: 'Resin injection stops the crack and restores clarity. Thirty minutes, same day, mobile or in-shop.',
+    short: 'Resin injection stops the crack and restores clarity. Thirty minutes, same day, mobile or in-shop',
     title: 'Rock chip *repair*', alt: 'Resin injection into a rock chip',
-    text: 'A chip the size of a quarter can be saved if we reach it before it spreads. Vacuum-pressure resin injection fills the break, restores clarity and keeps your original factory seal intact.',
+    text: 'A chip the size of a quarter can be saved if we reach it before it spreads. Vacuum-pressure resin injection fills the break, restores clarity and keeps your original factory seal intact',
     facts: [['30 min', 'on site'], ['$0', 'with most insurers'], ['Same-day', 'availability']],
     price: 'from $79', cta: 'Book a repair', href: '/contact',
   },
   {
     n: '03', name: 'ADAS Recalibration', img: IMG.adas,
-    short: 'Cameras and radar recalibrated so lane-keep and auto-brake work exactly like factory.',
+    short: 'Cameras and radar recalibrated so lane-keep and auto-brake work exactly like factory',
     title: 'ADAS *recalibration*', alt: 'ADAS calibration target in front of a sedan',
-    text: 'Lane-keep, auto-brake and adaptive cruise all read the road through your windshield camera. After any replacement we run static and dynamic calibration and hand you a certified report.',
+    text: 'Lane-keep, auto-brake and adaptive cruise all read the road through your windshield camera. After any replacement we run static and dynamic calibration and hand you a certified report',
     facts: [['Static', 'target board'], ['Dynamic', 'road test'], ['Report', 'for insurer']],
     price: 'from $199', cta: 'Get a quote', href: '/contact',
   },
   {
     n: '04', name: 'Side & Back Glass', img: IMG.side,
-    short: 'Tempered glass replaced with full interior debris cleanup and regulator check.',
+    short: 'Tempered glass replaced with full interior debris cleanup and regulator check',
     title: 'Side & back *glass*', alt: 'Technician cleaning a new side window',
-    text: 'Tempered door, quarter and rear glass replaced with full interior debris cleanup, regulator check and heated/antenna elements reconnected. Most same-day.',
+    text: 'Tempered door, quarter and rear glass replaced with full interior debris cleanup, regulator check and heated/antenna elements reconnected. Most same-day',
     facts: [['45 min', 'average'], ['Vacuum', 'interior cleanup'], ['Heated', 'rear glass']],
     price: 'from $179', cta: 'Get a quote', href: '/contact',
   },
   {
     n: '05', name: 'Mobile Service', img: IMG.van,
-    short: 'Home, office or parking lot: our van brings the shop to your driveway anywhere in Columbus.',
+    short: 'Home, office or parking lot: our van brings the shop to your driveway anywhere in Columbus',
     title: 'Mobile *service*', alt: 'Mobile service van in a driveway at dusk',
-    text: 'Home, office or parking lot: the van carries the glass, the urethane and the calibration rig. Anywhere inside the Columbus outer belt, no extra charge.',
+    text: 'Home, office or parking lot: the van carries the glass, the urethane and the calibration rig. Anywhere inside the Columbus outer belt, no extra charge',
     facts: [['I-270', 'service area'], ['$0', 'travel fee'], ['7am', 'earliest slot']],
     price: 'included', cta: 'Book mobile', href: '/contact?mode=mobile',
   },
@@ -226,7 +226,7 @@ export const choir = {
 /* ---------- Home, cinematic chapters (inspired by a scroll-told product story) ---------- */
 export const cinema = {
   kicker: 'About Ryonne',
-  text: "We're driven by *precision*. By the one-millimeter alignment most shops overlook. Every chip is a crack waiting to spread, every install a chance to make your car *safer*, *quieter*, *factory-right*.",
+  text: "We're driven by *precision*. By the one-millimeter alignment most shops overlook. Every chip is a crack waiting to spread, every install a chance to make your car *safer*, *quieter*, *factory-right*",
 };
 
 export const bay = {
@@ -247,19 +247,19 @@ export const value = {
     {
       label: 'For drivers', cta: 'Get my quote', href: '/contact',
       rows: [
-        ['Clarity over guesswork,', 'you see the price before we start, with no surprise line items.'],
-        ['Safety over speed,', 'every windshield cures to a safe drive-away time and every camera is recalibrated.'],
-        ['Your time over ours,', 'the mobile van comes to your home or office at no extra charge.'],
-        ['Paperwork handled,', 'we file the insurance claim and bill your insurer directly.'],
+        ['Clarity over guesswork,', 'you see the price before we start, with no surprise line items'],
+        ['Safety over speed,', 'every windshield cures to a safe drive-away time and every camera is recalibrated'],
+        ['Your time over ours,', 'the mobile van comes to your home or office at no extra charge'],
+        ['Paperwork handled,', 'we file the insurance claim and bill your insurer directly'],
       ],
     },
     {
       label: 'For fleets', cta: 'Fleet program', href: '/fleet',
       rows: [
-        ['Uptime over downtime,', 'priority scheduling keeps your vehicles on the road and earning.'],
-        ['One invoice over ten,', 'every job across the fleet on one consolidated bill.'],
-        ['Records over memory,', 'each job logged with the VIN, photos and the calibration report.'],
-        ['The yard over the shop,', 'we come to your depot so drivers never leave their route.'],
+        ['Uptime over downtime,', 'priority scheduling keeps your vehicles on the road and earning'],
+        ['One invoice over ten,', 'every job across the fleet on one consolidated bill'],
+        ['Records over memory,', 'each job logged with the VIN, photos and the calibration report'],
+        ['The yard over the shop,', 'we come to your depot so drivers never leave their route'],
       ],
     },
   ],
@@ -273,7 +273,7 @@ export type DamageId = 'chip' | 'crack' | 'shattered';
 export const diagnose = {
   eyebrow: 'Diagnose in 3D',
   title: 'Show us\n*the damage*',
-  text: 'Turn the car, tap the glass that took the hit and tell us what happened. We match the right repair and pre-fill your quote.',
+  text: 'Turn the car, tap the glass that took the hit and tell us what happened. We match the right repair and pre-fill your quote',
   model: '/models/car.glb',
   steps: { glass: 'Which glass?', damage: 'What happened?', paint: 'Your colour' },
   glass: [
@@ -298,7 +298,7 @@ export const diagnose = {
   request: {
     title: 'Get your\n*quote*',
     photoTitle: 'Send us\n*a photo*',
-    photoText: 'One clear photo of the damage is enough. We reply with a price within the hour.',
+    photoText: 'One clear photo of the damage is enough. We reply with a price within the hour',
     summary: 'Your diagnosis',
     back: 'Change the diagnosis',
     type: 'Vehicle type',
@@ -311,9 +311,9 @@ export const diagnose = {
     sending: 'Sending…',
     fullForm: 'Use the full form',
   },
-  sent: { title: 'Request\n*sent*', text: 'Thank you. We reply within the hour during opening times, with a price and a slot.', again: 'New request' },
-  idle: 'Tap a glass on the car, or pick one here.',
-  pickDamage: 'Now tell us what happened.',
+  sent: { title: 'Request\n*sent*', text: 'Thank you. We reply within the hour during opening times, with a price and a slot', again: 'New request' },
+  idle: 'Tap a glass on the car, or pick one here',
+  pickDamage: 'Now tell us what happened',
   loading: 'Preparing the car',
   cta: 'Get my quote',
   reset: 'Start over',
@@ -325,23 +325,23 @@ export function diagnoseResult(glass: GlassId, damage: DamageId) {
   if (glass === 'windshield') {
     if (damage === 'chip') return {
       service: 'Rock chip repair', price: 'from $79', time: '30 min',
-      note: 'Usually $0 with comprehensive insurance. A repair keeps your factory seal intact.',
+      note: 'Usually $0 with comprehensive insurance. A repair keeps your factory seal intact',
     };
     return {
       service: 'Windshield replacement', price: 'from $249', time: '90 min',
       extra: 'ADAS recalibration · from $199',
       note: damage === 'crack'
-        ? 'A spreading crack can’t be repaired safely. If your windshield carries a camera, we recalibrate it.'
-        : 'Don’t drive with a shattered windshield: our van comes to you.',
+        ? 'A spreading crack can’t be repaired safely. If your windshield carries a camera, we recalibrate it'
+        : 'Don’t drive with a shattered windshield: our van comes to you',
     };
   }
   if (glass === 'rear') return {
     service: 'Rear glass replacement', price: 'from $229', time: '60 min',
-    note: 'Rear glass is tempered: it is replaced, never repaired. Heating and antenna reconnected.',
+    note: 'Rear glass is tempered: it is replaced, never repaired. Heating and antenna reconnected',
   };
   return {
     service: 'Side window replacement', price: 'from $179', time: '45 min',
-    note: 'Side glass is tempered: it is replaced, never repaired. Full interior vacuum included.',
+    note: 'Side glass is tempered: it is replaced, never repaired. Full interior vacuum included',
   };
 }
 
@@ -349,18 +349,18 @@ export function diagnoseResult(glass: GlassId, damage: DamageId) {
 
 /* ---------- Reviews ---------- */
 export const reviews = [
-  { quote: '“Fast and professional. The recalibration was spot on.”', author: 'Mark T. · 2021 Honda Civic', img: IMG.hero },
-  { quote: '“Fixed the chip before it spread. Clean work.”', author: 'David L. · 2019 Subaru Ascent', img: IMG.chip },
-  { quote: '“We use Ryonne for all our company vans. Zero downtime.”', author: 'Sarah J. · Fleet manager', img: IMG.van },
-  { quote: '“Explained every step and the price matched the quote.”', author: 'Priya R. · 2022 Tesla Model 3', img: IMG.adas },
-  { quote: '“Came to my office. Done before lunch.”', author: 'Carlos M. · 2020 Ford F-150', img: IMG.drive },
+  { quote: '“Fast and professional. The recalibration was spot on”', author: 'Mark T. · 2021 Honda Civic', img: IMG.hero },
+  { quote: '“Fixed the chip before it spread. Clean work”', author: 'David L. · 2019 Subaru Ascent', img: IMG.chip },
+  { quote: '“We use Ryonne for all our company vans. Zero downtime”', author: 'Sarah J. · Fleet manager', img: IMG.van },
+  { quote: '“Explained every step and the price matched the quote”', author: 'Priya R. · 2022 Tesla Model 3', img: IMG.adas },
+  { quote: '“Came to my office. Done before lunch”', author: 'Carlos M. · 2020 Ford F-150', img: IMG.drive },
 ];
 
 /* ---------- Home: teaser for the 3D diagnosis page ---------- */
 export const diagnoseTeaser = {
   eyebrow: 'Diagnose in 3D',
   title: 'Show us\n*the damage*',
-  text: 'Turn the car, tap the glass that took the hit and get the right repair with a price. Or just send us a photo.',
+  text: 'Turn the car, tap the glass that took the hit and get the right repair with a price. Or just send us a photo',
   cta: 'Open the 3D diagnosis',
   href: '/diagnose',
   img: img('diagnose-teaser.jpg', 1280, 800),
@@ -370,7 +370,7 @@ export const diagnoseTeaser = {
 export const reviewsWiper = {
   eyebrow: 'What drivers say',
   score: '4.98',
-  label: 'Average rating from 800+ jobs in Columbus.',
+  label: 'Average rating from 800+ jobs in Columbus',
   hint: 'Tap the glass',
 };
 
@@ -378,35 +378,35 @@ export const reviewsWiper = {
 export const quoteForm = {
   eyebrow: 'Get a quote',
   title: 'Define your\n*glass*',
-  text: 'Share your vehicle details so we can prepare a tailored quote. We aim to respond within the hour during opening times.',
+  text: 'Share your vehicle details so we can prepare a tailored quote. We aim to respond within the hour during opening times',
   contactMethods: ['Phone', 'Email', 'Text'],
   glass: ['Windshield', 'Side window', 'Rear glass', 'Not sure'],
   services: [
     { value: 'mobile', label: 'Mobile — we come to you' },
     { value: 'in-shop', label: 'In-shop — Columbus bay' },
   ],
-  success: "Thank you — we'll be in touch within the hour during opening times.",
+  success: "Thank you — we'll be in touch within the hour during opening times",
   fleetMessage: (program: string) => `Fleet enquiry — ${program} program. Vehicles: [number] · Depot: [address]`,
 };
 
 /* ---------- Services page ---------- */
 export const servicesPage = {
-  hero: { eyebrow: 'Services', lines: ['Glass work,', '*factory-right*'], text: 'Five services, one standard. OE-grade glass, structural urethane, certified ADAS recalibration — mobile or in our Columbus bay.', img: IMG.shop },
+  hero: { eyebrow: 'Services', lines: ['Glass work,', '*factory-right*'], text: 'Five services, one standard. OE-grade glass, structural urethane, certified ADAS recalibration — mobile or in our Columbus bay', img: IMG.shop },
   faqTitle: 'Questions\n*drivers ask*',
   closing: { eyebrow: 'Ready when you are', title: 'Book today', cta: 'Start the conversation', href: '/contact', img: IMG.drive },
 };
 
 export const faq = [
-  { q: 'Will my insurance cover it?', a: 'In Ohio, most comprehensive policies cover glass with a low or zero deductible. We file the claim for you and bill the insurer directly.' },
-  { q: 'How long before I can drive?', a: 'Our urethane reaches safe drive-away strength in 60 minutes at room temperature. We give you the exact time on your invoice.' },
-  { q: 'Do you use original glass?', a: 'OE or OEE (same manufacturer, same specification). We never fit second-tier aftermarket glass on a vehicle with a camera.' },
-  { q: 'Is recalibration really needed?', a: 'Yes — manufacturers require it after any windshield replacement on a camera-equipped car. A camera off by one degree reads the lane 1.5 metres wrong at 80 metres.' },
-  { q: 'What about rain sensors and heated glass?', a: 'Matched by VIN. The new glass carries the same sensor gel pad, heating grid and acoustic layer as the original.' },
+  { q: 'Will my insurance cover it?', a: 'In Ohio, most comprehensive policies cover glass with a low or zero deductible. We file the claim for you and bill the insurer directly' },
+  { q: 'How long before I can drive?', a: 'Our urethane reaches safe drive-away strength in 60 minutes at room temperature. We give you the exact time on your invoice' },
+  { q: 'Do you use original glass?', a: 'OE or OEE (same manufacturer, same specification). We never fit second-tier aftermarket glass on a vehicle with a camera' },
+  { q: 'Is recalibration really needed?', a: 'Yes — manufacturers require it after any windshield replacement on a camera-equipped car. A camera off by one degree reads the lane 1.5 metres wrong at 80 metres' },
+  { q: 'What about rain sensors and heated glass?', a: 'Matched by VIN. The new glass carries the same sensor gel pad, heating grid and acoustic layer as the original' },
 ];
 
 /* ---------- Fleet page ---------- */
 export const fleetPage = {
-  hero: { eyebrow: 'Commercial fleets', lines: ['Zero', '*downtime*'], text: 'Priority glass maintenance for vans, trucks and corporate fleets in Columbus. One invoice a month, one number to call, vehicles back on the road the same day.', img: IMG.fleet },
+  hero: { eyebrow: 'Commercial fleets', lines: ['Zero', '*downtime*'], text: 'Priority glass maintenance for vans, trucks and corporate fleets in Columbus. One invoice a month, one number to call, vehicles back on the road the same day', img: IMG.fleet },
   stats: [
     { value: 140, suffix: '+', label: 'Fleet vehicles' },
     { value: 24, suffix: 'h', label: 'Max turnaround' },
@@ -433,7 +433,7 @@ export const fleetPrograms = tiers.map(t => t.id);
 
 /* ---------- Contact page ---------- */
 export const contactPage = {
-  hero: { eyebrow: 'Contact & booking', lines: ['Every chip', 'starts with a', '*conversation*'], text: 'Call, message, or send your vehicle details below. We answer within the hour during opening times and most jobs are booked for the same day.', img: IMG.rain },
+  hero: { eyebrow: 'Contact & booking', lines: ['Every chip', 'starts with a', '*conversation*'], text: 'Call, message, or send your vehicle details below. We answer within the hour during opening times and most jobs are booked for the same day', img: IMG.rain },
   cards: [
     { k: 'Phone', title: business.phone, text: business.hours.long, href: `tel:${business.tel}` },
     { k: 'Email', title: business.email, text: 'We aim to respond within the hour', href: `mailto:${business.email}` },
