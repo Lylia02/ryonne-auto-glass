@@ -1,30 +1,25 @@
 import Hero from '@/components/Hero';
-import Marquee from '@/components/Marquee';
-import Manifesto from '@/components/Manifesto';
-import Process from '@/components/Process';
-import GlassChoir from '@/components/GlassChoir';
-import PriceList from '@/components/PriceList';
-import FleetBlock from '@/components/FleetBlock';
-import ReviewsArc from '@/components/ReviewsArc';
-import SpecForm from '@/components/SpecForm';
-import Diagnose from '@/components/Diagnose';
-import Closing from '@/components/Closing';
-import { home, homeProcess } from '@/lib/site';
+import ShiftCinema from '@/components/ShiftCinema';
+import Surfaces from '@/components/Surfaces';
+import BayProcess from '@/components/BayProcess';
+import Arrival from '@/components/Arrival';
+import RealValue from '@/components/RealValue';
+import WiperReviews from '@/components/WiperReviews';
 
+/* Home, told like a short film:
+   who we are (the drive at blue hour) → what we do (service screens)
+   → how we do it (in the bay) → the car drives out and parks: show us
+   your damage in 3D → what you get → what drivers say. */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee />
-      <Manifesto id="about" {...home.manifesto} />
-      <Diagnose showroom />
-      <Process data={homeProcess} />
-      <GlassChoir />
-      <PriceList />
-      <FleetBlock />
-      <ReviewsArc />
-      <SpecForm />
-      <Closing {...home.closing} />
+      <ShiftCinema />
+      <Surfaces />
+      <BayProcess />
+      <Arrival />
+      <RealValue />
+      <WiperReviews />
     </>
   );
 }

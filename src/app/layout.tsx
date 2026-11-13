@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { sans } from './fonts';
+import { wide } from './fontWide';
 import { MotionProvider } from '@/lib/motion';
 import { businessJsonLd, pageMetadata } from '@/lib/seo';
 import { SITE_URL } from '@/lib/site';
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   ...pageMetadata('home', '/'),
 };
 
-export const viewport: Viewport = { themeColor: '#0c0c0c' };
+export const viewport: Viewport = { themeColor: '#07080d' };
 
 // Runs before first paint: if the gate was already played this session,
 // hide it and start with the curtain closed (see globals.css additions).
@@ -23,7 +24,7 @@ const gateScript = `try{if(sessionStorage.getItem('${GATE_KEY}'))document.docume
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={sans.variable} suppressHydrationWarning>
+    <html lang="en" className={`${sans.variable} ${wide.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: gateScript }} />
       </head>

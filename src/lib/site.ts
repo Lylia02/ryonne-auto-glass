@@ -8,7 +8,6 @@ export type Img = { src: string; w: number; h: number };
 const img = (name: string, w: number, h: number): Img => ({ src: `/img/${name}`, w, h });
 export const IMG = {
   adas: img('adas.jpg', 1264, 848),
-  car: img('car.png', 1248, 756),
   chip: img('chip.jpg', 1264, 848),
   drive: img('drive.jpg', 1376, 768),
   fleet: img('fleet.jpg', 1376, 768),
@@ -54,7 +53,8 @@ export const business = {
   ],
   footerContact: 'Columbus, Ohio · By appointment',
   copyright: '© 2026 Ryonne Auto Glass LLC',
-  credit: 'Vehicle renders: “Car Concept” © 2024 Darmstadt Graphics Group, CC BY 4.0',
+  credit: '3D car: “Car Concept” by Eric Chadwick, © 2024 Darmstadt Graphics Group, CC BY 4.0, modified (logos removed, compressed)',
+  creditHref: 'https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/CarConcept',
 };
 
 export const stats = [
@@ -71,6 +71,7 @@ export const menu = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
   { label: 'Process', href: '/#process' },
+  { label: 'Diagnose in 3D', href: '/diagnose' },
   { label: 'Fleet', href: '/fleet' },
   { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/contact' },
@@ -78,6 +79,7 @@ export const menu = [
 export const footerMenu = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Diagnose in 3D', href: '/diagnose' },
   { label: 'Fleet', href: '/fleet' },
   { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/contact' },
@@ -88,6 +90,7 @@ export const gateLines: Record<string, string> = {
   '/': 'Glass fitted like a safety part · Not simply replaced',
   '/services': 'Five services · One standard',
   '/fleet': 'Zero downtime · One invoice',
+  '/diagnose': 'Show us the damage · In 3D',
   '/contact': 'Every chip starts with a conversation',
 };
 
@@ -105,6 +108,10 @@ export const pages = {
     title: 'Fleet program — Ryonne Auto Glass, Columbus',
     description: 'Priority glass maintenance for vans, trucks and corporate fleets in Columbus. On-site, monthly invoicing, zero downtime.',
   },
+  diagnose: {
+    title: 'Diagnose your glass in 3D — Ryonne Auto Glass, Columbus',
+    description: 'Turn the car, tap the glass that took the hit, and get the right repair and a price. Send your request or a photo in one minute.',
+  },
   contact: {
     title: 'Contact & booking — Ryonne Auto Glass, Columbus',
     description: 'Book windshield replacement, chip repair or ADAS recalibration in Columbus. Mobile or in-shop. (614) 973-3385.',
@@ -116,19 +123,6 @@ export const home = {
   hero: {
     lines: ['Every chip', 'starts with', 'a *conversation*'],
     cta: 'Start the conversation',
-    cards: {
-      phone: { k: 'Phone', title: business.phone, text: business.hours.long },
-      email: { k: 'Email', title: 'Send Us A Message', text: 'We answer within the hour during opening times' },
-      mobile: { k: 'Mobile', title: 'We Come To You', text: 'Home, office or parking lot, anywhere in Columbus' },
-      visit: { k: 'Visit us', title: 'Viewings By Appointment', text: 'Our Columbus bay, or your driveway', inShop: 'Book in-shop', mobileBtn: 'Book mobile' },
-    },
-  },
-  manifesto: {
-    eyebrow: 'About Ryonne',
-    text: "We're driven by *precision*. By the one-millimeter alignment most shops overlook. Every chip is a crack waiting to spread, every install a chance to make your car *safer*, *quieter*, *factory-right*",
-    sub: 'Seventeen years · Eight hundred windshields · One standard',
-    left: { img: IMG.urethane, alt: 'Technician fitting a windshield' },
-    right: { img: IMG.shop, alt: 'ADAS calibration rig' },
   },
   makes: {
     label: 'We service all makes & models',
@@ -136,23 +130,7 @@ export const home = {
     cta: 'Get a quote',
     carAlt: 'Side profile of a car',
   },
-  servicesHead: { eyebrow: 'What we do', title: 'Our *services*', all: 'All services »' },
-  priceList: {
-    eyebrow: 'Transparent pricing',
-    title: 'What we *fix*',
-    note: 'Prices are indicative; final quote after VIN check. Insurance claims handled for you.',
-  },
-  fleetBlock: {
-    eyebrow: 'Commercial fleets',
-    title: 'Running a fleet\nin *Columbus?*',
-    text: 'Our fleet guide covers priority scheduling, on-site service for vans and trucks, monthly invoicing and ADAS compliance for commercial vehicles.',
-    cta: 'Fleet program',
-    img: IMG.fleet,
-    alt: 'Commercial vans and trucks in a depot',
-    badge: 'Fleet depot · priority slots',
-  },
   reviewsHead: { eyebrow: 'What drivers say', title: 'Rated *4.98* from 800+ jobs' },
-  closing: { eyebrow: 'Are you ready to', title: 'See clearly', cta: 'Start the conversation', href: '#contact', img: IMG.rain },
 };
 
 /* ---------- Process (home + fleet) ---------- */
@@ -232,11 +210,9 @@ export const services = [
    polygon, x y in %) and one light tone. The cut morphs from one
    service to the next, so every polygon keeps 8 points in the same
    order (start top-left, clockwise). */
+
+/* Gem cuts and light tones, one per service (services page jewel, fleet tiers) */
 export const choir = {
-  eyebrow: 'What we do',
-  title: 'Five services,\n*one standard*',
-  hint: 'Scroll to explore',
-  all: 'All services »',
   cuts: [
     '18% 14%, 50% 9%, 82% 14%, 95% 50%, 99% 88%, 50% 93%, 1% 88%, 5% 50%',   // windshield
     '30% 3%, 70% 3%, 97% 30%, 97% 70%, 70% 97%, 30% 97%, 3% 70%, 3% 30%',     // chip — round brilliant
@@ -245,6 +221,48 @@ export const choir = {
     '14% 3%, 86% 3%, 97% 14%, 97% 86%, 86% 97%, 14% 97%, 3% 86%, 3% 14%',     // mobile — emerald cut
   ],
   tones: ['#8fb4ff', '#ffd400', '#36e2ff', '#e8102a', '#ff8a3d'],
+};
+
+/* ---------- Home, cinematic chapters (inspired by a scroll-told product story) ---------- */
+export const cinema = {
+  kicker: 'About Ryonne',
+  text: "We're driven by *precision*. By the one-millimeter alignment most shops overlook. Every chip is a crack waiting to spread, every install a chance to make your car *safer*, *quieter*, *factory-right*.",
+};
+
+export const bay = {
+  kicker: 'How it works',
+  title: 'Four steps, one bay',
+  step: 'Step',
+  shots: ['Shot 01 · VIN match', 'Shot 02 · Glass scan', 'Shot 03 · Pinch-weld prep', 'Shot 04 · Set & cure'],
+};
+
+export const surfaces = {
+  kicker: 'Service',
+  words: ['Sealed', 'Saved', 'Aligned', 'Cleared', 'On site'],
+};
+
+export const value = {
+  title: 'Real value',
+  tabs: [
+    {
+      label: 'For drivers', cta: 'Get my quote', href: '/contact',
+      rows: [
+        ['Clarity over guesswork,', 'you see the price before we start, with no surprise line items.'],
+        ['Safety over speed,', 'every windshield cures to a safe drive-away time and every camera is recalibrated.'],
+        ['Your time over ours,', 'the mobile van comes to your home or office at no extra charge.'],
+        ['Paperwork handled,', 'we file the insurance claim and bill your insurer directly.'],
+      ],
+    },
+    {
+      label: 'For fleets', cta: 'Fleet program', href: '/fleet',
+      rows: [
+        ['Uptime over downtime,', 'priority scheduling keeps your vehicles on the road and earning.'],
+        ['One invoice over ten,', 'every job across the fleet on one consolidated bill.'],
+        ['Records over memory,', 'each job logged with the VIN, photos and the calibration report.'],
+        ['The yard over the shop,', 'we come to your depot so drivers never leave their route.'],
+      ],
+    },
+  ],
 };
 
 /* ---------- Diagnose in 3D — configurator before the quote form ----------
@@ -275,10 +293,29 @@ export const diagnose = {
     { variant: 'Pearly Swirly', label: 'Pearl', swatch: '#ebe8e2' },
     { variant: 'Carmine Candy', label: 'Carmine', swatch: '#8a0f1d' },
   ],
+  modes: { model: '3D diagnosis', photo: 'Send a photo' },
+  vehicleTypes: ['Sedan', 'SUV', 'Pickup', 'Van', 'Coupe'],
+  request: {
+    title: 'Get your\n*quote*',
+    photoTitle: 'Send us\n*a photo*',
+    photoText: 'One clear photo of the damage is enough. We reply with a price within the hour.',
+    summary: 'Your diagnosis',
+    back: 'Change the diagnosis',
+    type: 'Vehicle type',
+    which: 'Which glass?',
+    drop: 'Drop a photo or tap to choose',
+    dropHint: 'JPG or PNG, up to 10MB',
+    attach: 'Add a photo',
+    placeholder: 'Your photo shows up here',
+    send: 'Send my request',
+    sending: 'Sending…',
+    fullForm: 'Use the full form',
+  },
+  sent: { title: 'Request\n*sent*', text: 'Thank you. We reply within the hour during opening times, with a price and a slot.', again: 'New request' },
   idle: 'Tap a glass on the car, or pick one here.',
   pickDamage: 'Now tell us what happened.',
   loading: 'Preparing the car',
-  cta: 'Book this repair',
+  cta: 'Get my quote',
   reset: 'Start over',
   rotate: 'Drag to turn',
 };
@@ -309,14 +346,6 @@ export function diagnoseResult(glass: GlassId, damage: DamageId) {
 }
 
 /* ---------- Price rows ---------- */
-export const prices = [
-  { name: 'Windshield — Replacement', detail: 'OE-grade glass · lifetime leak warranty', price: 'from $249' },
-  { name: 'Rock chip — Repair', detail: 'Resin injection · 30 min', price: 'from $79' },
-  { name: 'ADAS — Recalibration', detail: 'Static & dynamic · certified report', price: 'from $199', hot: true },
-  { name: 'Side window — Replacement', detail: 'Tempered glass · debris cleanup', price: 'from $179' },
-  { name: 'Rear glass — Replacement', detail: 'Heated & antenna-ready', price: 'from $229' },
-  { name: 'Fleet — Priority program', detail: 'Monthly invoicing · on-site · zero downtime', price: 'Custom' },
-];
 
 /* ---------- Reviews ---------- */
 export const reviews = [
@@ -326,6 +355,24 @@ export const reviews = [
   { quote: '“Explained every step and the price matched the quote.”', author: 'Priya R. · 2022 Tesla Model 3', img: IMG.adas },
   { quote: '“Came to my office. Done before lunch.”', author: 'Carlos M. · 2020 Ford F-150', img: IMG.drive },
 ];
+
+/* ---------- Home: teaser for the 3D diagnosis page ---------- */
+export const diagnoseTeaser = {
+  eyebrow: 'Diagnose in 3D',
+  title: 'Show us\n*the damage*',
+  text: 'Turn the car, tap the glass that took the hit and get the right repair with a price. Or just send us a photo.',
+  cta: 'Open the 3D diagnosis',
+  href: '/diagnose',
+  img: img('diagnose-teaser.jpg', 1280, 800),
+};
+
+/* ---------- Reviews — the wiper ---------- */
+export const reviewsWiper = {
+  eyebrow: 'What drivers say',
+  score: '4.98',
+  label: 'Average rating from 800+ jobs in Columbus.',
+  hint: 'Tap the glass',
+};
 
 /* ---------- Quote form ---------- */
 export const quoteForm = {

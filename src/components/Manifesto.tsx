@@ -1,5 +1,5 @@
 'use client';
-/* Manifesto — words light up as you scroll, side images drift (parallax) */
+/* Manifesto — words come out of the blur as you scroll, side images drift (parallax) */
 import { useRef } from 'react';
 import Image from 'next/image';
 import Rich from './Rich';
@@ -24,7 +24,7 @@ export default function Manifesto({ id, eyebrow, text, sub, left, right }: Props
   }, [], { fonts: true });
 
   return (
-    <section className="manifesto" id={id} data-theme="light" ref={ref}>
+    <section className="manifesto" id={id} ref={ref}>
       <figure className="manifesto__img manifesto__img--l" data-speed="0.85"><Image src={left.img.src} width={left.img.w} height={left.img.h} alt={left.alt} sizes={sizes} /></figure>
       <div className="manifesto__center">
         <span className="eyebrow">{eyebrow}</span>

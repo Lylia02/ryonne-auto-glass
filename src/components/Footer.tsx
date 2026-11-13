@@ -14,7 +14,7 @@ export default function Footer() {
         <div><b>Contact</b><a href={`tel:${business.tel}`}>{business.phone}</a><a href={`mailto:${business.email}`}>{business.email}</a><span>{business.footerContact}</span></div>
         <div><b>Hours</b>{business.hours.footer.map(h => <span key={h}>{h}</span>)}</div>
       </div>
-      <div className="footer__bottom"><span>{business.copyright}</span><span>{business.credit}</span></div>
+      <div className="footer__bottom"><span>{business.copyright}</span><span>{business.credit} · <a href={business.creditHref} target="_blank" rel="noopener noreferrer">source</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">licence</a></span></div>
     </footer>
   );
 }
