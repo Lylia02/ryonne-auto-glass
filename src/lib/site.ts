@@ -242,24 +242,27 @@ export const surfaces = {
 };
 
 export const value = {
+  kicker: 'What you get',
   title: 'Real value',
+  lead: 'No vague promises: four things you can hold us to',
+  figure: 'Fig. 01 — The view we look after',
   tabs: [
     {
       label: 'For drivers', cta: 'Get my quote', href: '/contact',
-      rows: [
-        ['Clarity over guesswork,', 'you see the price before we start, with no surprise line items'],
-        ['Safety over speed,', 'every windshield cures to a safe drive-away time and every camera is recalibrated'],
-        ['Your time over ours,', 'the mobile van comes to your home or office at no extra charge'],
-        ['Paperwork handled,', 'we file the insurance claim and bill your insurer directly'],
+      cards: [
+        { title: 'Insurance billed direct', metric: 'Direct', label: 'Insurance billing', text: 'We file the claim and bill your insurer directly. Most comprehensive policies in Ohio cover glass' },
+        { title: 'Safe to drive in an hour', metric: '60 min', label: 'Safe drive-away', text: 'Urethane cured to a safe drive-away time before you leave' },
+        { title: 'Leaks covered for life', metric: 'Lifetime', label: 'Leak warranty', text: 'Every windshield we set stays covered against leaks' },
+        { title: 'No travel fee', metric: '$0', label: 'Travel fee', text: 'The mobile van comes to your home or office anywhere inside I-270' },
       ],
     },
     {
       label: 'For fleets', cta: 'Fleet program', href: '/fleet',
-      rows: [
-        ['Uptime over downtime,', 'priority scheduling keeps your vehicles on the road and earning'],
-        ['One invoice over ten,', 'every job across the fleet on one consolidated bill'],
-        ['Records over memory,', 'each job logged with the VIN, photos and the calibration report'],
-        ['The yard over the shop,', 'we come to your depot so drivers never leave their route'],
+      cards: [
+        { title: 'Cleared before clock-in', metric: 'Cleared', label: 'Before clock-in', text: 'Glass fitted, ADAS recalibrated and documented before the driver starts the shift' },
+        { title: 'A slot within the hour', metric: '1 hr', label: 'Slot confirmed', text: 'One number for the whole fleet; a slot confirmed within the hour' },
+        { title: 'We come to your depot', metric: 'Depot', label: 'We come to you', text: 'The van arrives before the first shift, with the right glass matched by VIN' },
+        { title: 'One invoice a month', metric: '1', label: 'Monthly invoice', text: 'Every job on one invoice, with plate, date, part and calibration report' },
       ],
     },
   ],
